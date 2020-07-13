@@ -60,13 +60,6 @@ meta:
 
 *If proposing a new instrument, briefly and concisely list some example assessment questions.*
 
-# What sets this project apart?
-
-- *Reason #1*
-- *Reason #2*
-- *Reason #3*
-- *Reason #4*
-- *etc.*
 
 # Player Interaction Patterns and Modes
 
@@ -87,7 +80,7 @@ meta:
 
 # Procedures/Actions
 
-*Idea is to have a selection menu of glassware that one can click to zoom in and operate closer. Each piece in detail should clearly present the name and maybe a quick blurb about what it's usually used for. A glass on a zeroed scale. Users can use the glassware to measure out a specific amount told and weigh it. (pour or pipette water and eyeball where to stop) Maybe a notepad to record the results and after repeating a number of times, graph is prompted?*
+*Idea is to have a selection menu of glassware that one can click to zoom in and operate closer. Each piece in detail should clearly present the name and maybe a quick blurb about what it's usually used for. A glass on a zeroed scale. Users can use the glassware to measure out a specific amount told and weigh it. (pour or pipette water and eyeball where to stop) Maybe a notepad on side auto records the mass and there can be a note about D = M/V to calc the volume. MVP would be a beaker vs pipet probably?*
 
 # Rules
 
@@ -101,7 +94,7 @@ meta:
 ## Core Gameplay Mechanics (Detailed)
 
   - *Take up water*
-    - Details: *Use mouse in some way to pour/get water into glassware*
+    - Details: *Use mouse in some way to pour/get water into glassware. Graphically this might be a bit tricky if the glassware not uniform shape.*
   - *Weigh and determine volume*
     - Details: *Scale gives back a number once you put water in the glass on it*
     - How it works: *Scale readings can correspond to lines on the glass readings easily - maybe with some randomness.*
@@ -139,11 +132,10 @@ meta:
 *Game region/phase/time are ways of designating a particularly important place in the game.*
 
 - Music List (Ambient sound)
-  - *Game region/phase/time*: *Example 1*, *Example 2*
-  - *Game region/phase/time*: *Example 3*, *Example 4*
+  - *General calm background music or no bg music*
   
 *Game Interactions are things that trigger SFX, like character movement, hitting a spiky enemy, collecting a coin.*
 
 - Sound List (SFX)
-  - *Game Interaction*: *Example 1*, *Example 2*
-  - *Game Interaction*: *Example 3*, *Example 4*
+  - *Pouring water sound*
+  - *Some clinking sounds ideally*
