@@ -4,7 +4,7 @@ waltz:
 meta:
   version: 0.0.2
   gdd authors:
-    - Your name goes here
+    - Zihan Wu
   template authors:
     - Austin Cory Bart <acbart@udel.edu>
     - Mark Sheriff
@@ -14,23 +14,7 @@ meta:
 
 # Overview
 
-*Notes written in italics must be deleted in the final version.*
-
-## Elevator Pitch
-
-*A one sentence pitch for your game. Pretend that your were pitching your game to a executive going to the elevator. You have less than 60 Seconds. Check [this resource](http://www.gameacademy.com/perfecting-indie-games-elevator-pitch/) for more information.*
-
-## Influences (Brief)
-
-- *Influence #1*:
-  - Medium: *(Television, Games, Literature, Movies, etc.)*
-  - Explanation: *In one paragraph or less, explain why this is an influence.*
-- *Influence #2*:
-  - Medium: *(Television, Games, Literature, Movies, etc.)*
-  - Explanation: *In one paragraph or less, explain why this is an influence.*
-- *Influence #3*:
-  - Medium: *(Television, Games, Literature, Movies, etc.)*
-  - Explanation: *In one paragraph or less, explain why this is an influence.*
+*Simulation to familarize students with glassware*
 
 ## Core Gameplay Mechanics (Brief)
 
@@ -45,30 +29,30 @@ meta:
 
 ## Learning Domains
 
-*Briefly list any and all of the disciplines and learning domains for this subject.*
+*Chemistry*
 
 ## Target Audiences
 
-*Who are your learners?*
+*College general chem students*
 
 ## Target Contexts
 
-*Describe what kinds of formal and informal learning contexts this will be used in (e.g., courses, k-12 computer labs during free time).*
+*Before lab time to get an idea of what the lab will be like.*
 
 ## Learning Objectives
 
 *Remember, Learning Objectives are NOT simply topics. They are statements of observable behavior that a learner can do after the learning experience. You cannot observe someone "understanding" or "knowing" something.*
 
-- *Formal Learning Objective #1*
-- *Formal Learning Objective #2*
-- *Formal Learning Objective #3*
+- *Students will be able to recognize and name more glassware.*
+- *Be able to read glassware measurements correctly (meniscus, units)*
+- *Can determine which wares should be used for specific scenarios - like if you want to measure liquid to this accuracy?*
+- *_Not sure if should include precision vs accuracy here or if this should just introduce how to use the glassware_*
 
 ## Prerequisite Knowledge
 
 *What do they need to know prior to trying this game?*
 
-- *Prerequisite Learning Objective #1*
-- *Prerequisite Learning Objective #2*
+- *Know basic subtraction/addition and units of measurement*
 
 ## Assessment Measures
 
@@ -92,9 +76,8 @@ meta:
 
 ## Player Modes
 
-- *Player mode #1*: *Description*
-- *Player mode #2*: *Description*
-- *etc.*
+- *Glassware selection*: *Pick a tool to use / learn about.*
+- *Measurement*: *Use the tool picked to measure out a target amount?*
 
 # Gameplay Objectives
 
@@ -104,7 +87,7 @@ meta:
 
 # Procedures/Actions
 
-*Describe the control scheme and what actions a user can take in the game.*
+*Idea is to have a selection menu of glassware that one can click to zoom in and operate closer. Each piece in detail should clearly present the name and maybe a quick blurb about what it's usually used for. A glass on a zeroed scale. Users can use the glassware to measure out a specific amount told and weigh it. (pour or pipette water and eyeball where to stop) Maybe a notepad to record the results and after repeating a number of times, graph is prompted?*
 
 # Rules
 
@@ -113,35 +96,24 @@ meta:
 # Objects/Entities
 
 *What other things are in the world that you need to design?*
+*The scale, all the glassware, possibly a notes section.*
 
 ## Core Gameplay Mechanics (Detailed)
 
-  - *Core Gameplay Mechanic #1*
-    - Details: *Describe in 2 paragraphs or less*
-    - How it works: *Describe in 2 paragraphs or less*
-  - *Core Gameplay Mechanic #2*
-    - Details: *Describe in 2 paragraphs or less*
-    - How it works: *Describe in 2 paragraphs or less*
-  - *Core Gameplay Mechanic #3*
-    - Details: *Describe in 2 paragraphs or less*
-    - How it works: *Describe in 2 paragraphs or less*
-  - *Core Gameplay Mechanic #4*
-    - Details: *Describe in 2 paragraphs or less*
-    - How it works: *Describe in 2 paragraphs or less*
-    
+  - *Take up water*
+    - Details: *Use mouse in some way to pour/get water into glassware*
+  - *Weigh and determine volume*
+    - Details: *Scale gives back a number once you put water in the glass on it*
+    - How it works: *Scale readings can correspond to lines on the glass readings easily - maybe with some randomness.*
+
 ## Feedback
 
 *Explicitly describe what visual/audio/etc. indicators there that give players feedback on their progress towards their gameplay objectives (and ideally the learning objectives).*
 
+- *Water level rising when you use the glassware*
+- *Once measured on scale, tells user if it was on mark or not*
+
 # Story and Gameplay
-
-## Story (Brief)
-
-*The Summary or TL;DR version of below*
-
-## Story (Detailed)
-
-*Go into as much detail as needs be. Spare no detail. Use Mind Mapping software to get your point across*
 
 ## Gameplay (Brief)
 
@@ -155,18 +127,12 @@ meta:
 
 ## Graphical
 
-- Characters List
-  - *Characters 1*
-  - *Characters 2*
-  - *...*
 - Textures:
-  - *Texture 1*
-  - *Texture 2*
-  - *...*
+  - *Water*
 - Environment Art/Textures:
-  - *Environment Texture 1*
-  - *Environment Texture 2*
-  - *...*
+  - *All the glassware types (ask)*
+  - *Scale*
+  - *Table*
 
 ## Audio
 
