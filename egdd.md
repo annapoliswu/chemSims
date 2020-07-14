@@ -50,7 +50,7 @@ Before lab time, to get an idea of what the lab will be like.
 ## Assessment Measures
 
 - What is the name of this piece of glassware?
-- Given a pipet how would you use it?
+- Given a pipette how would you use it?
 
 # Player Interaction Patterns and Modes
 
@@ -71,15 +71,15 @@ One user can follow the minimal instruction on screen and click/drag where highl
 
 Idea is to have a selection menu of glassware that one can click to zoom in and operate closer.
 
-Each piece in detail should clearly present the name and maybe a quick blurb about what it's usually used for.
+Each glassware piece in detail should clearly present the name and a quick blurb about what it's usually used for.
 
-A glass on a zeroed scale.
+There is a glass on a zeroed scale and users can use the glassware to measure out a specific amount into the glass to weigh it. 
 
-Users can use the glassware to measure out a specific amount told and weigh it. (pour or pipette water)
+Actions for measuring out water using the pipettes would be different from more container-like glassware. 
 
-Maybe a notepad on side that auto records the mass and there can be a note about D = M/V to calc the volume.
+Maybe include a notepad on side that auto records the mass and there can be a note about D = M/V to calculate volume from mass.
 
-TODO: MVP would be a beaker vs pipet probably?
+_TODO: Minimum viable product would probably be a beaker vs pipette? If pipetting and pouring are the only 2 actions needed to measure out water._
 
 # Objects/Entities
 
@@ -90,7 +90,7 @@ TODO: MVP would be a beaker vs pipet probably?
 ## Core Gameplay Mechanics (Detailed)
 
 - Take up water
-    - Details: Use mouse in some way to pour/get water into glassware. Graphically this might be a bit tricky if the glassware not uniform shape.
+    - Details: Use mouse in some way to get water into glassware. Actions for taking up the water for pipettes vs for other glassware would have to be different. Graphically  might be a bit tricky if the glassware not uniform shape.
 - Weigh and determine volume
     - Details: Scale gives back a number once you put water in the glass on it
     - How it works: Scale readings can correspond to lines on the glass readings easily - or could be fixed with some randomness.
