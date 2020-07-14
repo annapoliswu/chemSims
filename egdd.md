@@ -14,130 +14,112 @@ meta:
 
 # Overview
 
-*Simulation to familarize students with glassware*
+Simulation to familarize students with glassware
 
 ## Core Gameplay Mechanics (Brief)
 
-*Give a very high-level description of any core gameplay mechanics*
-
-- *Take up water*
-- *Weigh water on scale*
-- *Notes and calculations on mass -> volume*
+- Take up water
+- Weigh water on scale
+- Notes and calculations on mass -> volume
 
 # Learning Aspects
 
 ## Learning Domains
 
-*Chemistry, lab equipment*
+Chemistry, lab equipment
 
 ## Target Audiences
 
-*College general chem students*
+College-aged, general chemistry students
 
 ## Target Contexts
 
-*Before lab time to get an idea of what the lab will be like.*
+Before lab time, to get an idea of what the lab will be like.
 
 ## Learning Objectives
 
-*Remember, Learning Objectives are NOT simply topics. They are statements of observable behavior that a learner can do after the learning experience. You cannot observe someone "understanding" or "knowing" something.*
-
-- *Students will be able to recognize and name more glassware.*
-- *Be able to read glassware measurements correctly (meniscus, units)*
-- *Can determine which wares should be used for specific scenarios - like if you want to get this amount of liquid, which tool would be better to use*
-- *_Not sure if should include precision vs accuracy here or if this should just introduce how to use the glassware_*
+- Students will be able to recognize and name more glassware.
+- Be able to read glassware measurements correctly (meniscus, units)
+- Can determine which wares should be used for specific scenarios - like if you want to get this amount of liquid, which tool would be better to use
+- _TODO: Not sure if should include precision vs accuracy here or if this should just introduce how to use the glassware_
 
 ## Prerequisite Knowledge
 
-*What do they need to know prior to trying this game?*
-
-- *Know basic subtraction/addition and units of measurement*
+- Students should be able to do basic subtraction/addition with units of measurement
 
 ## Assessment Measures
 
-*Describe how the learning will be assessed, e.g., pre/post multiple-choice test, or SAT, or some other instrument.*
-
-- *What is the name of this piece of glassware?*
-- *Given a pipet how would you use it?*
-
+- What is the name of this piece of glassware?
+- Given a pipet how would you use it?
 
 # Player Interaction Patterns and Modes
 
 ## Player Interaction Pattern
 
-*One user can follow the minimal instruction on screen and click/drag where highlighted to interact.*
+One user can follow the minimal instruction on screen and click/drag where highlighted to interact.
 
 ## Player Modes
 
-- *Glassware selection*: *Pick a tool to use / learn about.*
-- *Measurement*: *Use the tool picked to measure out a target amount?*
+- Glassware selection: Pick a tool to use / learn about.
+- Measurement: Use the tool picked to measure out a target amount?
 
 # Gameplay Objectives
 
-- *To transfer and weigh water and find the volume of the water*
+- To transfer and weigh water and find the volume of the water.
 
 # Procedures/Actions
 
-*Idea is to have a selection menu of glassware that one can click to zoom in and operate closer. Each piece in detail should clearly present the name and maybe a quick blurb about what it's usually used for. A glass on a zeroed scale. Users can use the glassware to measure out a specific amount told and weigh it. (pour or pipette water) Maybe a notepad on side that auto records the mass and there can be a note about D = M/V to calc the volume. MVP would be a beaker vs pipet probably?*
+Idea is to have a selection menu of glassware that one can click to zoom in and operate closer.
 
-# Rules
+Each piece in detail should clearly present the name and maybe a quick blurb about what it's usually used for.
 
-*What resources are available to the player that they make use of?  How does this affect gameplay?*
+A glass on a zeroed scale.
+
+Users can use the glassware to measure out a specific amount told and weigh it. (pour or pipette water)
+
+Maybe a notepad on side that auto records the mass and there can be a note about D = M/V to calc the volume.
+
+TODO: MVP would be a beaker vs pipet probably?
 
 # Objects/Entities
 
-*The scale, all the glassware, possibly a notes section.*
+* The scale
+* All the glassware
+* Possibly a notes section.
 
 ## Core Gameplay Mechanics (Detailed)
 
-  - *Take up water*
-    - Details: *Use mouse in some way to pour/get water into glassware. Graphically this might be a bit tricky if the glassware not uniform shape.*
-  - *Weigh and determine volume*
-    - Details: *Scale gives back a number once you put water in the glass on it*
-    - How it works: *Scale readings can correspond to lines on the glass readings easily - or could be fixed with some randomness.*
-  - *Calc mass -> volume*
-    - Details: *A notes section after the weighing with formulas and a guide to how to calc.*
-    - How it works: *Could autofill once everything is over or a fill in the blank type section*
+- Take up water
+    - Details: Use mouse in some way to pour/get water into glassware. Graphically this might be a bit tricky if the glassware not uniform shape.
+- Weigh and determine volume
+    - Details: Scale gives back a number once you put water in the glass on it
+    - How it works: Scale readings can correspond to lines on the glass readings easily - or could be fixed with some randomness.
+- Calc mass -> volume
+    - Details: A notes section after the weighing with formulas and a guide to how to calc.
+    - How it works: Could autofill once everything is over or a fill in the blank type section
 
 ## Feedback
 
-*Explicitly describe what visual/audio/etc. indicators there that give players feedback on their progress towards their gameplay objectives (and ideally the learning objectives).*
-
-- *Water level rising when you use the glassware*
-- *Warnings and prompts to retry the "taking up water" section if user sets pipettes wrong or poors way past target amount.*
-- *At end, tells user how close to target amount*
+- Water level rising when you use the glassware.
+- Warnings and prompts to retry the "taking up water" section if user sets pipettes wrong or poors way past target amount.
+- At end, tells user how close to target amount.
 
 # Story and Gameplay
 ![Storyboard](glassware_storyboard.jpg) 
-
-## Gameplay (Brief)
-
-*The Summary version of below*
-
-## Gameplay (Detailed)
-
-*Go into as much detail as needs be. Spare no detail. Combine this with the game mechanics section above*
 
 # Assets Needed
 
 ## Graphical
 
 - Textures:
-  - *Water*
+  - Water
 - Environment Art/Textures:
-  - *All the glassware types (ask)*
-  - *Scale*
-  - *Table*
+  - All the glassware types (TODO: What specific glassware types will we need?)
+  - Scale
+  - Table
 
 ## Audio
-
-*Game region/phase/time are ways of designating a particularly important place in the game.*
-
-- Music List (Ambient sound)
-  - *General calm background music or no bg music*
   
-*Game Interactions are things that trigger SFX, like character movement, hitting a spiky enemy, collecting a coin.*
-
 - Sound List (SFX)
-  - *Pouring water sound*
-  - *Some clinking sounds ideally*
+  - Pouring water sound
+  - Some clinking glass sounds ideally
