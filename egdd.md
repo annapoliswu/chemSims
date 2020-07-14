@@ -94,7 +94,7 @@ meta:
     - Details: *Use mouse in some way to pour/get water into glassware. Graphically this might be a bit tricky if the glassware not uniform shape.*
   - *Weigh and determine volume*
     - Details: *Scale gives back a number once you put water in the glass on it*
-    - How it works: *Scale readings can correspond to lines on the glass readings easily - maybe with some randomness.*
+    - How it works: *Scale readings can correspond to lines on the glass readings easily - or could be fixed with some randomness.*
 
 ## Feedback
 
@@ -104,7 +104,7 @@ meta:
 - *Once measured on scale, tells user if it was on mark or not*
 
 # Story and Gameplay
-![Storyboard](glassware_storyboard.png) 
+![Storyboard](glassware_storyboard.jpg) 
 
 ## Gameplay (Brief)
 
