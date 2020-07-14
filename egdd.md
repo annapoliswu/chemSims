@@ -20,16 +20,14 @@ meta:
 
 *Give a very high-level description of any core gameplay mechanics*
 
-- *Gameplay Mechanic #1*
-- *Gameplay Mechanic #2*
-- *Gameplay Mechanic #3*
-- *Gameplay Mechanic #4*
+- *Choose glassware*
+- *Interact / click add water with glassware*
 
 # Learning Aspects
 
 ## Learning Domains
 
-*Chemistry*
+*Chemistry, lab equipment*
 
 ## Target Audiences
 
@@ -45,7 +43,7 @@ meta:
 
 - *Students will be able to recognize and name more glassware.*
 - *Be able to read glassware measurements correctly (meniscus, units)*
-- *Can determine which wares should be used for specific scenarios - like if you want to measure liquid to this accuracy?*
+- *Can determine which wares should be used for specific scenarios - like if you want to get this amount of liquid, which tool would be better to use*
 - *_Not sure if should include precision vs accuracy here or if this should just introduce how to use the glassware_*
 
 ## Prerequisite Knowledge
@@ -58,14 +56,15 @@ meta:
 
 *Describe how the learning will be assessed, e.g., pre/post multiple-choice test, or SAT, or some other instrument.*
 
-*If proposing a new instrument, briefly and concisely list some example assessment questions.*
+- *What is the name of this piece of glassware?*
+- *Given a pipet how would you use it?*
 
 
 # Player Interaction Patterns and Modes
 
 ## Player Interaction Pattern
 
-*How many players / how it works / etc.*
+*One user can follow the minimal instruction on screen and click/drag where highlighted to interact.*
 
 ## Player Modes
 
@@ -74,13 +73,11 @@ meta:
 
 # Gameplay Objectives
 
-- *Primary Objective #1*: *Description*
-- *Primary Objective #2*: *Description*
-- *etc.*
+- *To transfer and weigh water and find the volume of the water*
 
 # Procedures/Actions
 
-*Idea is to have a selection menu of glassware that one can click to zoom in and operate closer. Each piece in detail should clearly present the name and maybe a quick blurb about what it's usually used for. A glass on a zeroed scale. Users can use the glassware to measure out a specific amount told and weigh it. (pour or pipette water and eyeball where to stop) Maybe a notepad on side auto records the mass and there can be a note about D = M/V to calc the volume. MVP would be a beaker vs pipet probably?*
+*Idea is to have a selection menu of glassware that one can click to zoom in and operate closer. Each piece in detail should clearly present the name and maybe a quick blurb about what it's usually used for. A glass on a zeroed scale. Users can use the glassware to measure out a specific amount told and weigh it. (pour or pipette water) Maybe a notepad on side that auto records the mass and there can be a note about D = M/V to calc the volume. MVP would be a beaker vs pipet probably?*
 
 # Rules
 
@@ -107,6 +104,7 @@ meta:
 - *Once measured on scale, tells user if it was on mark or not*
 
 # Story and Gameplay
+![Storyboard](glassware_storyboard.png) 
 
 ## Gameplay (Brief)
 
