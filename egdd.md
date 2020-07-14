@@ -20,8 +20,9 @@ meta:
 
 *Give a very high-level description of any core gameplay mechanics*
 
-- *Choose glassware*
-- *Interact / click add water with glassware*
+- *Take up water*
+- *Weigh water on scale*
+- *Notes and calculations on mass -> volume*
 
 # Learning Aspects
 
@@ -85,7 +86,6 @@ meta:
 
 # Objects/Entities
 
-*What other things are in the world that you need to design?*
 *The scale, all the glassware, possibly a notes section.*
 
 ## Core Gameplay Mechanics (Detailed)
@@ -95,13 +95,17 @@ meta:
   - *Weigh and determine volume*
     - Details: *Scale gives back a number once you put water in the glass on it*
     - How it works: *Scale readings can correspond to lines on the glass readings easily - or could be fixed with some randomness.*
+  - *Calc mass -> volume*
+    - Details: *A notes section after the weighing with formulas and a guide to how to calc.*
+    - How it works: *Could autofill once everything is over or a fill in the blank type section*
 
 ## Feedback
 
 *Explicitly describe what visual/audio/etc. indicators there that give players feedback on their progress towards their gameplay objectives (and ideally the learning objectives).*
 
 - *Water level rising when you use the glassware*
-- *Once measured on scale, tells user if it was on mark or not*
+- *Warnings and prompts to retry the "taking up water" section if user sets pipettes wrong or poors way past target amount.*
+- *At end, tells user how close to target amount*
 
 # Story and Gameplay
 ![Storyboard](glassware_storyboard.jpg) 
