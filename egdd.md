@@ -41,7 +41,6 @@ Before lab time, to get an idea of what the lab will be like.
 - Students will be able to recognize and name more glassware.
 - Be able to read glassware measurements correctly (meniscus, units)
 - Can determine which wares should be used for specific scenarios - like if you want to get this amount of liquid, which tool would be better to use
-- _TODO: Not sure if should include precision vs accuracy here or if this should just introduce how to use the glassware_
 
 ## Prerequisite Knowledge
 
@@ -80,8 +79,7 @@ Actions for measuring out water using the pipettes would be different from more 
 
 Include a notepad on side that auto records the mass and there can be a note about D = M/V to calculate volume from mass.
 
-_Note: Minimum viable product - start with beaker and similar glassware. 
-The main focus is on introduction to the glassware, don't make overly complicated. _
+_Note: Minimum viable product is to start with the beaker and similar glassware. The main focus is on introduction to the glassware, don't make overly complicated._
 
 # Objects/Entities
 
