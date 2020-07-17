@@ -1,78 +1,76 @@
 import ExampleObject from '../objects/exampleObject';
 import Glassware from "../objects/glassware";
 import { GameObjects } from 'phaser';
+import InteractiveButton from "../objects/interactiveButton";
+import Beaker from '../objects/Beaker';
 
-/*
-const WIDTH
-const HEIGHT 
-*/
+
+
 export default class MainScene extends Phaser.Scene {
+  
+  private WIDTH: number;
+  private HEIGHT: number;
+
   private exampleObject: ExampleObject;
   glassware : Glassware;
   glasswareGroup;
 
-  addButton: GameObjects.Text;
-  minusButton;
+  addButton: InteractiveButton;
+  subtractButton: InteractiveButton;
   graphics;
-  fillImage;
+  waterImage;
   mask;
+
+  testtext;
+
   constructor() {
     super({ key: 'MainScene' });
   }
   
   create() {
+    
+    this.WIDTH = this.scale.width;
+    this.HEIGHT = this.scale.height;
     let x = 500;
     let y = 300;
-    this.glassware = new Glassware(this, x, y, "beaker").setDepth(99);
+    this.glassware = new Beaker(this, x, y).setDepth(99);
     
     this.graphics = this.add.graphics();
     //this.graphics.fillStyle(0xff00ff, 1);
-    this.fillImage = new GameObjects.Sprite(this, x,y,this.glassware.glasstype+'Fill');
-    let w = this.fillImage.width*2;
-    let maskShape = this.graphics.fillRoundedRect(x-w/2, y- this.fillImage.height/2, w , this.fillImage.height, { tl: 0, tr: 0, bl: w/2, br: w/2 });
+    this.waterImage = new GameObjects.Sprite(this, x,y,'beakerFill');
+
+    let w = this.waterImage.width*2;
+    let maskShape = this.graphics.fillRoundedRect(x-w/2, y- this.waterImage.height/2, w , this.waterImage.height, { tl: 0, tr: 0, bl: w/2, br: w/2 });
     
-    this.mask = this.fillImage.createGeometryMask(this.graphics);
+    this.mask = this.waterImage.createGeometryMask(this.graphics);
     this.mask.invertAlpha = true;
-    this.fillImage.setMask(this.mask);
-    //this.fillImage.clearMask(); //mask off of lineart for some reason
+    this.waterImage.setMask(this.mask);
+    //this.waterImage.clearMask(); //mask off of lineart for some reason
     maskShape.y-=100;
 
-    this.add.existing(this.fillImage);
+    this.add.existing(this.waterImage);
 
-    //let graphics2 = this.add.graphics();
-    this.addButton = this.add.text(700, 200, 'ADD WATER', { backgroundColor: '#000', padding:20})
-      .on('pointerover', () => {this.buttonHover(this.addButton)})
-      .on('pointerout', () => {this.buttonRest(this.addButton)})
-      .on('pointerdown', () => {this.buttonDown(this.addButton)})
-      .on('pointerup', () => {
-        //addwater
-        this.buttonHover(this.addButton);
-      });
-    this.addButton.setInteractive();
 
-    this.minusButton = this.add.text(700, 300, 'SUBTRACT WATER', { backgroundColor: '#000', padding:20})
-    .on('pointerover', () => {this.buttonHover(this.minusButton)})
-    .on('pointerout', () => {this.buttonRest(this.minusButton)})
-    .on('pointerdown', () => {this.buttonDown(this.minusButton)})
-    .on('pointerup', () => {
-      //addwater
-      this.buttonHover(this.minusButton);
+  this.testtext = this.add.text(700, 100, 'WATER: '+ this.glassware.waterAmount, { backgroundColor: '#AA0AAA', padding:20});
+
+    this.addButton = new InteractiveButton(this,700,200,'ADD WATER').on('pointerup', () => {
+        this.addButton.buttonHover();
+        this.glassware.addWater();
     });
-    this.minusButton.setInteractive();
-  }
+
+    this.subtractButton = new InteractiveButton(this,700,300,'SUBTRACT WATER').on('pointerup', () => {
+      this.subtractButton.buttonHover();
+      this.glassware.subtractWater();
+  });
+
+
+}
+  
 
 
   update() {
+    this.testtext.setText('WATER: '+this.glassware.waterAmount);
   }
 
-  
-  buttonHover(button){
-    button.setStyle({backgroundColor:'#00CCCC'});
-  }
-  buttonRest(button){
-    button.setStyle({backgroundColor:'#000'});
-  }
-  buttonDown(button){
-    button.setStyle({backgroundColor:'#00AAAA'});
-  }
+
 }
