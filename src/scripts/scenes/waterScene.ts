@@ -1,0 +1,101 @@
+import ExampleObject from '../objects/exampleObject';
+import Glassware from "../objects/glassware";
+import InteractiveButton from "../objects/interactiveButton";
+import Beaker from '../objects/Beaker';
+
+
+
+export default class WaterScene extends Phaser.Scene {
+
+  private WIDTH: number;
+  private HEIGHT: number;
+
+  private exampleObject: ExampleObject;
+  glassware: Glassware;
+  glasswaretype: string;
+  glasswareGroup;
+
+  addButton: InteractiveButton;
+  subtractButton: InteractiveButton;
+
+  testtext;
+
+  graphics;
+  waterImage;
+  mask;
+
+
+  constructor() {
+    super({ key: 'WaterScene' });
+  }
+
+  init(data) {
+    this.glasswaretype = data.glasswaretype;
+  }
+
+  create() {
+    this.WIDTH = this.scale.width;
+    this.HEIGHT = this.scale.height;
+
+    this.add.rectangle(this.WIDTH / 2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99);
+
+    let glassX = 4 * this.WIDTH / 7;
+    let glassY = this.HEIGHT / 2 + 50;
+    switch (this.glasswaretype) {
+      case 'beaker':
+        this.glassware = new Beaker(this, glassX, glassY);
+      //others go here, note using same glass in other scenes need to send info on waterAmount
+    }
+
+
+
+    //buttons
+    let buttonX = 3 * this.WIDTH / 4;
+    this.addButton = new InteractiveButton(this, buttonX, 300, 'ADD WATER').on('pointerup', () => {
+      this.addButton.buttonHover();
+      this.glassware.addWater();
+    });
+
+    this.subtractButton = new InteractiveButton(this, buttonX, 375, 'SUBTRACT WATER').on('pointerup', () => {
+      this.subtractButton.buttonHover();
+      this.glassware.subtractWater();
+    });
+
+
+    //text
+    this.add.text(buttonX, 200, 'TARGET\nFill to ' + this.glassware.target + 'ml',
+      {
+        fontSize: '16px',
+        backgroundColor: '#3330AA',
+        padding: 20,
+        lineSpacing: 5
+      });
+
+    this.testtext = this.add.text(buttonX, 500, 'WATER: ' + this.glassware.waterAmount, { color: '#000', backgroundColor: '#999999', padding: 20 });
+    this.add.text(buttonX, 600, 'GLASSTYPE: ' + this.glasswaretype, { color: '#000', backgroundColor: '#999999', padding: 20 });
+
+    this.add.text(100, 200, this.glassware.glasstype.toUpperCase() + '\n' + this.glassware.description,
+      {
+        backgroundColor: '#3330AA',
+        padding: 20,
+        wordWrap: { width: 300 },
+        lineSpacing: 10
+      });
+
+  }
+
+
+
+  update() {
+    this.testtext.setText('WATER: ' + this.glassware.waterAmount);
+    this.checkEnd();
+  }
+
+  checkEnd(){
+    if(this.glassware.waterAmount == this.glassware.target){
+      this.scene.start('WeighScene');
+    }
+  }
+
+
+}

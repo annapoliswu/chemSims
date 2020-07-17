@@ -10,7 +10,7 @@ export default class Beaker extends Glassware{
         this.description = 'A beaker is a cylinder with a lip and a spout. A beaker is usually about the same width as its height... etc';
         
         this.max = 800;
-        this.target = 200;
+        this.target = 600;
 
     }
     

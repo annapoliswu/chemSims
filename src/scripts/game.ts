@@ -1,10 +1,12 @@
 import 'phaser';
-import MainScene from './scenes/mainScene';
+import WaterScene from './scenes/waterScene';
 import PreloadScene from './scenes/preloadScene';
 import GameConfig = Phaser.Types.Core.GameConfig;
+import SelectionScene from './scenes/selectionScene';
+import WeighScene from './scenes/weighScene';
 
-const DEFAULT_WIDTH = 1000;
-const DEFAULT_HEIGHT = 600;
+const DEFAULT_WIDTH = 1366;
+const DEFAULT_HEIGHT = 768;
 
 
 const config: GameConfig = {
@@ -16,7 +18,7 @@ const config: GameConfig = {
         width: DEFAULT_WIDTH,
         height: DEFAULT_HEIGHT
     },
-    scene: [PreloadScene, MainScene],
+    scene: [PreloadScene, SelectionScene, WaterScene, WeighScene],
     physics: {
         default: 'arcade',
         arcade: {

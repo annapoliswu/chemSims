@@ -13,12 +13,12 @@ export default class InteractiveButton extends Phaser.GameObjects.Text {
     }
     
     buttonHover(){
-        this.setStyle({backgroundColor:'#00CCCC'});
+        this.setStyle({backgroundColor:'#2badf1'});
     }
     buttonRest(){
         this.setStyle({backgroundColor:'#000'});
     }
     buttonDown(){
-        this.setStyle({backgroundColor:'#00AAAA'});
+        this.setStyle({backgroundColor:'#2289bf'});
     }
 }
