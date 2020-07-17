@@ -1,6 +1,6 @@
 import { GameObjects } from "phaser";
 
-export default class Glassware extends Phaser.GameObjects.Sprite {
+export default abstract class Glassware extends Phaser.GameObjects.Sprite {
     glasstype: string;
     description: string;
 
@@ -28,16 +28,13 @@ export default class Glassware extends Phaser.GameObjects.Sprite {
         this.mask.invertAlpha = true;
         this.waterImage.setMask(this.mask);
         this.clearMask(); //mask off of lineart for some reason
-        //maskShape.y-=100;
 
         scene.add.existing(this.waterImage);
-        
         scene.add.existing(this);
     }
 
-    addWater(){};
-
-    subtractWater(){};
+    abstract addWater();
+    abstract subtractWater();
 
     
 
