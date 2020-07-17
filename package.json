@@ -1,21 +1,21 @@
 {
-  "name": "educational-phaser-game-template",
+  "name": "chemsims",
   "version": "0.0.2",
-  "description": "Phaser 3 starter template for educational games, using TypeScript, webpack, and Github Pages.",
-  "homepage": "https://github.com/acbart/educational-phaser-game-template#readme",
+  "description": "Glassware simulation for general chem students.",
+  "homepage": "https://github.com/annapoliswu/chemSims/blob/master/egdd.md",
   "main": "index.js",
   "game": {
-    "url": "educational-phaser-game-template",
-    "shortName": "EdGame",
-    "name": "Educational Phaser Game Template"
+    "url": "chemSims",
+    "shortName": "GlassSim",
+    "name": "Glassware Sim"
   },
   "author": {
-    "name": "Austin Cory Bart",
-    "url": "https://github.com/acbart"
+    "name": "Zihan (Anna) Wu",
+    "url": "https://github.com/annapoliswu"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/acbart/educational-phaser-game-template.git"
+    "url": "https://github.com/annapoliswu/chemSims"
   },
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.js",

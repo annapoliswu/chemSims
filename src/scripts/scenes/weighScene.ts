@@ -23,6 +23,7 @@ export default class WeighScene extends Phaser.Scene {
     create() {
         this.WIDTH = this.scale.width;
         this.HEIGHT = this.scale.height;
+        this.add.rectangle(this.WIDTH / 2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99);
         
         this.chemscale = this.add.image(this.WIDTH/3.5, this.HEIGHT-200,'scale');
         this.notes = new Notes(this, 3*this.WIDTH/4, this.HEIGHT/2, this.WIDTH/2.5, this.HEIGHT);
