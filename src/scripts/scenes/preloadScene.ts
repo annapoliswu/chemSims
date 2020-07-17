@@ -6,6 +6,7 @@ export default class PreloadScene extends Phaser.Scene {
   preload(){
     this.load.image('beaker','assets/beaker800ml.png');
     this.load.image('beakerFill','assets/beaker800ml_fill.png');
+    this.load.image('scale','assets/scale.png' )
   }
 
   create() {

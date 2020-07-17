@@ -7,3 +7,7 @@
 - Beakers: <https://www.hiclipart.com/free-transparent-background-png-clipart-brvln>
 - Erlenmeyer Flask: <https://www.hiclipart.com/free-transparent-background-png-clipart-dgvbn>
 - Graduated Cylinder: <https://www.hiclipart.com/free-transparent-background-png-clipart-svuww>
+
+# Other Images
+
+- Scale: <http://clipart-library.com/clipart/1358203.htm>

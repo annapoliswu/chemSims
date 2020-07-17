@@ -18,7 +18,7 @@ export default class SelectionScene extends Phaser.Scene {
 
         this.beakerButton = new InteractiveButton(this, this.WIDTH / 2, 300, 'BEAKER').on('pointerup', () => {
             this.beakerButton.buttonHover();
-            this.scene.start('WaterScene', { glasswaretype: 'beaker' });
+            this.scene.start('WaterScene', { glasstype: 'beaker' });
         });
 
     }

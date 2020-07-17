@@ -12,7 +12,7 @@ export default class WaterScene extends Phaser.Scene {
 
   private exampleObject: ExampleObject;
   glassware: Glassware;
-  glasswaretype: string;
+  glasstype: string;
   glasswareGroup;
 
   addButton: InteractiveButton;
@@ -30,7 +30,7 @@ export default class WaterScene extends Phaser.Scene {
   }
 
   init(data) {
-    this.glasswaretype = data.glasswaretype;
+    this.glasstype = data.glasstype;
   }
 
   create() {
@@ -41,7 +41,7 @@ export default class WaterScene extends Phaser.Scene {
 
     let glassX = 4 * this.WIDTH / 7;
     let glassY = this.HEIGHT / 2 + 50;
-    switch (this.glasswaretype) {
+    switch (this.glasstype) {
       case 'beaker':
         this.glassware = new Beaker(this, glassX, glassY);
       //others go here, note using same glass in other scenes need to send info on waterAmount
@@ -71,9 +71,6 @@ export default class WaterScene extends Phaser.Scene {
         lineSpacing: 5
       });
 
-    this.testtext = this.add.text(buttonX, 500, 'WATER: ' + this.glassware.waterAmount, { color: '#000', backgroundColor: '#999999', padding: 20 });
-    this.add.text(buttonX, 600, 'GLASSTYPE: ' + this.glasswaretype, { color: '#000', backgroundColor: '#999999', padding: 20 });
-
     this.add.text(100, 200, this.glassware.glasstype.toUpperCase() + '\n' + this.glassware.description,
       {
         backgroundColor: '#3330AA',
@@ -81,6 +78,11 @@ export default class WaterScene extends Phaser.Scene {
         wordWrap: { width: 300 },
         lineSpacing: 10
       });
+
+    //for debug      
+    this.testtext = this.add.text(buttonX, 500, 'WATER: ' + this.glassware.waterAmount, { color: '#000', backgroundColor: '#999999', padding: 20 });
+    this.add.text(buttonX, 600, 'GLASSTYPE: ' + this.glasstype, { color: '#000', backgroundColor: '#999999', padding: 20 });
+
 
   }
 
@@ -92,8 +94,8 @@ export default class WaterScene extends Phaser.Scene {
   }
 
   checkEnd(){
-    if(this.glassware.waterAmount == this.glassware.target){
-      this.scene.start('WeighScene');
+    if(this.glassware.waterAmount == this.glassware.target){  //maybe a submit button instead? or a text promp to move on 
+      this.scene.start('WeighScene',{glasstype: this.glasstype});
     }
   }
 
