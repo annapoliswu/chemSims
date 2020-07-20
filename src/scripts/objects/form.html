@@ -2,11 +2,11 @@
 <p id = "instructions" style="font-size: 22px">Make a note of your glassware's initial weight.</p>
 
 <p id = "iWeightLabel" class= "label">Initial Weight: </p>
-    <input type="number" id = "iWeight" name="iWeight" placeholder="Enter Initial Weight">
+    <input type="number" id = "iWeight" name="iWeight" placeholder="Enter Initial Weight" onkeydown="return event.keyCode !== 69">
     <input type="button" id="iSubmit" name="iSubmit" value="ISUBMIT"><br/>
 
 <p id = "fWeightLabel" class = "label">Final Weight: </p>
-    <input type="number" id = "fWeight" name="fWeight" placeholder="Enter Final Weight">
+    <input type="number" id = "fWeight" name="fWeight" placeholder="Enter Final Weight" onkeydown="return event.keyCode !== 69">
     <input type="button" id="iSubmit" name="fSubmit" value="FSUBMIT"><br/>
 
 </div>
