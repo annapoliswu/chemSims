@@ -5,18 +5,22 @@ export default class Notes {
         //scene.add.text(x,y,"*interactive notes go here");
 
         let f = scene.add.dom(x, y).createFromCache('form');
-
+        let header = scene.add.text(800,100,"");
 
         f.addListener('click');
         f.on('click', function (event) {
             if (event.target.name === 'playButton'){
                 
-                scene.add.text(800,100,"playHit");
+                header.text = "playHit"
                 
                 let element = document.getElementById("text"); //gets html part
-                let inputText = f.getChildByName("name");
-                if(element && inputText){
-                    //element.innerHTML = inputText.value; //how to extract input value???
+                let inputText = document.getElementById("name");
+                if(element){
+                    if(inputText && inputText.innerHTML){ //cannot use inner on input types; nothing between html tags
+                        element.innerText = "aghhh"; //how to extract input value???
+                    }else{
+                        element.innerText = "null input";
+                    }
                 }
             }
         });
