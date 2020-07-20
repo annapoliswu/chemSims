@@ -6,20 +6,21 @@ export default class Notes {
 
         let f = scene.add.dom(x, y).createFromCache('form');
 
+
         f.addListener('click');
         f.on('click', function (event) {
             if (event.target.name === 'playButton'){
                 
                 scene.add.text(800,100,"playHit");
+                
                 let element = document.getElementById("text"); //gets html part
-                if(element){
-                    element.innerHTML = "YESYESYES";
+                let inputText = f.getChildByName("name");
+                if(element && inputText){
+                    //element.innerHTML = inputText.value; //how to extract input value???
                 }
             }
         });
 
-        //let formUtil = new FormUtil({scene:scene,rows:11,cols:11});
-    
     }
     
 }
