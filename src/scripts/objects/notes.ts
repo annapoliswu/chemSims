@@ -1,8 +1,8 @@
 export default class Notes {
 
-    initialWeight: number;
-    finalWeight: number
-
+    iWeight: number;
+    fWeight: number
+    
 
     constructor(scene: Phaser.Scene, x: number, y: number, w: number, h: number) {
         scene.add.rectangle(x, y, w, h, 0x000 );
@@ -15,17 +15,26 @@ export default class Notes {
 
         form.addListener('click');
         form.on('click', (event) => {
-            if (event.target.name === 'initialSubmit'){
+            if (event.target.name === 'iSubmit'){
                 
                 header.text = "buttonHit"
                 
-                let element = document.getElementById("initialWeightLabel"); //gets html part
-                this.initialWeight = parseFloat((<HTMLInputElement>document.getElementById("initialWeight")).value);
-                if(element){
-                    if(this.initialWeight){
-                        element.innerText = "Initial Weight: " + this.initialWeight;
+                let iWeightLabel = document.getElementById("iWeightLabel"); //gets html part
+                let iWeightElement = (<HTMLInputElement>document.getElementById("iWeight"));
+                this.iWeight = parseFloat(iWeightElement.value);
+
+                if(iWeightLabel){
+                    if(this.iWeight){
+                        iWeightLabel.innerText = "Initial Weight: " + this.iWeight;
+
+                        /* //can hide visibility like this 
+                        iWeightElement.style.visibility = "hidden";
+                        (<HTMLInputElement>document.getElementById("iSubmit")).style.visibility = "hidden";
+                        */
+
+                        //prompts to move to water scene
                     }else{
-                        element.innerText = "null input";
+                        iWeightLabel.innerText = "Please enter a weight";
                     }
                 }
             }
