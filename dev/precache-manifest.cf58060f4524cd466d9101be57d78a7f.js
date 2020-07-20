@@ -28,6 +28,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/devassets/erlenmeyerflask.png"
   },
   {
+    "revision": "0b083b17adcb0fdfbf2d6970ea540a2e",
+    "url": "/chemSims/devassets/form.html"
+  },
+  {
     "revision": "17c873e852eab2ffb5c40d47fae8835e",
     "url": "/chemSims/devassets/graduatedcylinder.png"
   },
@@ -64,15 +68,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/devfavicon.ico"
   },
   {
-    "revision": "19b8e16fbc5114dd30f8",
-    "url": "/chemSims/devgen.main.8f654d7aa698e25f29cc.bundle.js"
+    "revision": "a5a810e3c7c3658f433b",
+    "url": "/chemSims/devgen.main.2ce2dfd707c83a5ef3ce.bundle.js"
   },
   {
     "revision": "31b1ab3b5f371ca58b6f",
     "url": "/chemSims/devgen.vendors.6f16cee571c38ab43875.bundle.js"
   },
   {
-    "revision": "fadd4ce5ff8867171f2a16aeef4fbf5e",
+    "revision": "6862e6b70705a8419dba3ded0ec89db3",
     "url": "/chemSims/devindex.html"
   },
   {
