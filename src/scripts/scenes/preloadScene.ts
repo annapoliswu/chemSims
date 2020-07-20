@@ -11,8 +11,8 @@ export default class PreloadScene extends Phaser.Scene {
   }
 
   create() {
-    //this.scene.start('SelectionScene');
+    this.scene.start('SelectionScene');
     //this.scene.start('WaterScene');
-    this.scene.start('WeighScene');
+    //this.scene.start('WeighScene');
   }
 }
