@@ -32,7 +32,7 @@ export default class Beaker extends Glassware{
 
     //updates height of mask 
     updateMask(){
-        this.maskShape.y = this.maskHeightStart -  (this.waterAmount * (this.waterImage.height-155)/this.max);
+        this.maskShape.y = this.maskHeightStart -  (this.waterAmount * (this.waterImage.height-115)/this.max);
     }
 
     setWater(amountOfWater:number){
