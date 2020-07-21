@@ -10,10 +10,17 @@ export default class WeighScene extends BaseScene {
     scaleText: Phaser.GameObjects.Text;
     scaleWeight: number;
     sideText: Phaser.GameObjects.Text;
-    warning;
+    warning: Phaser.GameObjects.Text;
+
+    pastWaterScene: boolean = false;
 
     iWeight: number;
     fWeight: number;
+
+    iWeightLabel;
+    iWeightElement;
+
+
     
 
     constructor() {
@@ -71,9 +78,14 @@ export default class WeighScene extends BaseScene {
             this.glassware.setTintFill(0xFF0000);
         }).on('pointerup', ()=> {
             this.glassware.setTintFill(0xCCC); 
+            this.pastWaterScene = true;
             this.scene.start('WaterScene', {glasstype: this.glasstype});
         });
 
+        
+        this.iWeightLabel = document.getElementById("iWeightLabel"); //gets html part
+        this.iWeightElement = (<HTMLInputElement>document.getElementById("iWeight"));
+        this.iWeightLabel.textContent = "Initial Weight: " + this.iWeight;
     }
 
     
@@ -92,14 +104,11 @@ export default class WeighScene extends BaseScene {
                 
                 //this.warning.text = "buttonHit";
                 
-                let iWeightLabel = document.getElementById("iWeightLabel"); //gets html part
-                let iWeightElement = (<HTMLInputElement>document.getElementById("iWeight"));
-                let iWeightInstruction = document.getElementById("iInstruction");
-                this.iWeight = parseFloat(iWeightElement.value);
+                this.iWeight = parseFloat(this.iWeightElement.value);
 
-                if(iWeightLabel){
+                if(this.iWeightLabel){
                     if(this.iWeight){
-                        iWeightLabel.innerText = "Initial Weight: " + this.iWeight;
+                        this.iWeightLabel.textContent = "Initial Weight: " + this.iWeight;
 
                         /* //can hide visibility like this 
                         iWeightElement.style.visibility = "hidden";
@@ -108,6 +117,18 @@ export default class WeighScene extends BaseScene {
 
                         //prompts to move to water scene
                         //this.scene.start('WaterScene');
+                        
+                        if(!this.pastWaterScene){
+                            if(this.iWeight === this.glassware.weight){
+                                //this.sideText.alpha = 1;
+                                this.warning.text = "<== CLICK GLASS TO ADD WATER";
+                                this.glassware.setTintFill(0xFF0000);
+                                this.glassware.setInteractive(); //hmmmm
+                            }else{
+                                this.warning.text = "Check the scale again"
+                            }
+                        }
+
                     }else{
                         this.warning.text = "Please enter a weight!";
                     }
@@ -119,16 +140,6 @@ export default class WeighScene extends BaseScene {
 
 
     update() {
-        if(this.iWeight){
-            if(this.iWeight === this.glassware.weight){
-                //this.sideText.alpha = 1;
-                this.warning.text = "<== CLICK GLASS TO ADD WATER";
-                this.glassware.setTintFill(0xFF0000);
-                this.glassware.setInteractive(); //hmmmm
-            }else{
-                this.warning.text = "Check the scale again"
-            }
-        }
     }
 
 
