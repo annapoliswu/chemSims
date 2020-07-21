@@ -26,7 +26,7 @@ export default class WaterScene extends BaseScene {
   }
 
   init(data) {
-    this.glasstype = data.glasstype;
+    this.glasstype = 'beaker';
   }
 
   create() {
