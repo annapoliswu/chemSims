@@ -1,18 +1,14 @@
 import ExampleObject from '../objects/exampleObject';
+import BaseScene from "./baseScene";
 import Glassware from "../objects/glassware";
 import InteractiveButton from "../objects/interactiveButton";
 import Beaker from '../objects/Beaker';
 
 
 
-export default class WaterScene extends Phaser.Scene {
-
-  private WIDTH: number;
-  private HEIGHT: number;
+export default class WaterScene extends BaseScene {
 
   private exampleObject: ExampleObject;
-  glassware: Glassware;
-  glasstype: string;
   glasswareGroup;
 
   addButton: InteractiveButton;
@@ -26,7 +22,7 @@ export default class WaterScene extends Phaser.Scene {
 
 
   constructor() {
-    super({ key: 'WaterScene' });
+    super('WaterScene');
   }
 
   init(data) {
@@ -34,19 +30,13 @@ export default class WaterScene extends Phaser.Scene {
   }
 
   create() {
-    this.WIDTH = this.scale.width;
-    this.HEIGHT = this.scale.height;
+    super.create();
 
     this.add.rectangle(this.WIDTH / 2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99);
 
     let glassX = 4 * this.WIDTH / 7;
     let glassY = this.HEIGHT / 2 + 50;
-    switch (this.glasstype) {
-      case 'beaker':
-        this.glassware = new Beaker(this, glassX, glassY);
-      //others go here, note using same glass in other scenes need to send info on waterAmount
-    }
-
+    this.createGlassware(glassX, glassY);
 
 
     //buttons

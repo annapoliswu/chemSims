@@ -6,11 +6,13 @@ export default abstract class Glassware extends Phaser.GameObjects.Sprite {
 
     target: number;
     max: number;
+    weight: number;
     waterAmount: number = 0;
     waterImage: GameObjects.Sprite;
     
     graphics: GameObjects.Graphics;
     mask: Phaser.Display.Masks.GeometryMask;
+    maskHeightStart: number;
     maskShape;
 
     constructor(scene: Phaser.Scene, x: number, y: number, typeinput: string) {
@@ -28,6 +30,7 @@ export default abstract class Glassware extends Phaser.GameObjects.Sprite {
 
         this.mask = this.waterImage.createGeometryMask(this.graphics);
         this.mask.invertAlpha = true;
+        this.maskHeightStart = this.maskShape.y; //must be after invert
         this.waterImage.setMask(this.mask);
         this.clearMask(); //mask off of lineart for some reason
 
@@ -37,6 +40,8 @@ export default abstract class Glassware extends Phaser.GameObjects.Sprite {
 
     abstract addWater();
     abstract subtractWater();
+    abstract updateMask();
+    abstract setWater(amountOfWater: number);
 
     
 
