@@ -155,14 +155,14 @@ export default class WeighScene extends BaseScene {
                                     this.fWeightElement.style.display = "none";
                                     this.fSubmitElement.style.display = "none";
                                     this.warning.setText("");
-                                    
+
                                     //replace with variables: density, temp, mass
                                     this.calcText.setText("DENSITY = MASS / VOLUME" +
-                                    "\nVOLUME = MASS * DENSITY" +
+                                    "\nVOLUME = MASS / DENSITY" +
                                     "\n\nWater's density varies slightly with its temperature" +
                                     "\nIf the water's temperature is " + this.temp + " °F, it's density is " + this.density + " g/ml"+
-                                    "\n\nVOLUME = " + (this.glassware.weight+this.glassware.waterAmount) + " g * " + this.density + " g/ml"+
-                                    "\nVOLUME = " + (this.glassware.weight+this.glassware.waterAmount)*this.density + " ml");
+                                    "\n\nVOLUME = " + (this.glassware.weight+this.glassware.waterAmount) + " g / " + this.density + " g/ml"+
+                                    "\nVOLUME = " + (this.glassware.weight+this.glassware.waterAmount)/this.density + " ml");
                                 }else{
                                     this.warning.setText("Check the scale again");
                                 }
