@@ -16,7 +16,7 @@ export default class SelectionScene extends BaseScene{
 
         this.beakerButton = new InteractiveButton(this, this.WIDTH / 2, 300, 'BEAKER').on('pointerup', () => {
             this.beakerButton.buttonHover();
-            this.scene.start('WeighScene', { glasstype: 'beaker' });
+            this.scene.start('WeighScene', { glasstype: 'beaker' , waterAmount: 0});
         });
 
     }
