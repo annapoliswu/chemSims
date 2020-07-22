@@ -154,6 +154,7 @@ export default class WeighScene extends BaseScene {
                                     //can hide visibility like this 
                                     this.fWeightElement.style.display = "none";
                                     this.fSubmitElement.style.display = "none";
+                                    this.warning.setText("");
                                     
                                     //replace with variables: density, temp, mass
                                     this.calcText.setText("DENSITY = MASS / VOLUME" +
