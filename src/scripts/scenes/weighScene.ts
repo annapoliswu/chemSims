@@ -6,13 +6,8 @@ import { Tilemaps } from "phaser";
 
 export default class WeighScene extends BaseScene {
 
-    chemScale: Phaser.GameObjects.Image;
-    scaleText: Phaser.GameObjects.Text;
-    scaleWeight: number;
-    calcText: Phaser.GameObjects.Text;
-    warning: Phaser.GameObjects.Text;
-
     pastWaterScene: boolean = false;
+    waterAmountStart: number;
 
     iWeight: number;
     iWeightLabel: HTMLParagraphElement;
@@ -24,15 +19,23 @@ export default class WeighScene extends BaseScene {
     fWeightElement: HTMLInputElement;
     fSubmitElement: HTMLInputElement;
     fContainer: HTMLDivElement;
-    
-    waterAmountStart: number;
 
-    temp: number;
-    density: number;
+    temp: number;   //randomize
+    density: number;    //based on temp table
     mass: number; 
     volume: number;
     targetMass: number;
     targetVolume: number;
+
+    chemScale: Phaser.GameObjects.Image;
+    scaleWeight: number;    //randomize
+    scaleText: Phaser.GameObjects.Text;
+    calcText: Phaser.GameObjects.Text;
+
+    warning: Phaser.GameObjects.Text;
+    clickGlassWarning: string = "<- Click glass to add water";
+    checkScaleWarning: string = "Check the scale again";
+    enterWeightWarning: string = "Please enter a weight";
 
     
 
@@ -47,8 +50,8 @@ export default class WeighScene extends BaseScene {
 
     create() {
         super.create();
-        this.add.rectangle(this.WIDTH / 2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99);
-        this.chemScale = this.add.image(this.WIDTH/3.5, this.HEIGHT-180,'scale');
+        this.add.rectangle(this.WIDTH/2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99);
+        this.chemScale = this.add.image(this.WIDTH/3.5, this.HEIGHT-160,'scale');
 
         this.makeNotes();
         this.createGlassware(this.WIDTH/3.5, 240, this.waterAmountStart);
@@ -64,13 +67,13 @@ export default class WeighScene extends BaseScene {
             this.scene.start('WaterScene', {glasstype: this.glasstype});
         });
         
-        this.temp = 70;
-        this.density = 0.99802;
+        this.temp = 21.1;
+        this.density = 0.99797;
         this.targetMass = this.glassware.target;
         this.targetVolume = this.glassware.target/this.density;
 
-        this.scaleText = this.add.text(210, 575, this.glassware.weight + this.waterAmountStart + ' g', {
-            fontSize: '60px',
+        this.scaleText = this.add.text(160, 605, (this.glassware.weight + this.waterAmountStart).toFixed(2) + ' g', {
+            fontSize: '48px',
             color: '#000000',
             stroke: '#000000',
             strokeThickness: 3
@@ -95,6 +98,22 @@ export default class WeighScene extends BaseScene {
             }
         });
 
+    }
+
+
+    updateCalcVars(){
+        this.mass = this.fWeight - this.iWeight;
+        this.volume = this.mass/this.density;
+    }
+
+    //updates onscreen text once text input changes
+    updateLabels(){
+        if(this.iWeight){
+            this.iWeightLabel.textContent = "Initial Weight: " + this.iWeight + " g";
+        }
+        if(this.fWeight){
+            this.fWeightLabel.textContent = "Final Weight: " + this.fWeight + " g";
+        }
     }
 
     //can simplify later
@@ -123,27 +142,28 @@ export default class WeighScene extends BaseScene {
                     this.iWeight = parseFloat(this.iWeightElement.value);
                     if(this.iWeightLabel){
                         if(this.iWeight){
-                            this.iWeightLabel.textContent = "Initial Weight: " + this.iWeight + " g";
+                            this.updateLabels();
                                 if(this.iWeight === this.glassware.weight){
                                     //can hide visibility like this 
                                     this.iWeightElement.style.display = "none";
                                     this.iSubmitElement.style.display = "none";
 
-                                    this.warning.text = "<- Click glass to add water";
+                                    this.warning.setText(this.clickGlassWarning);
                                     this.glassware.setTintFill(0xFF00FF);
                                     this.glassware.setInteractive();
                                 }else{
-                                    this.warning.setText("Check the scale again");
+                                    this.warning.setText(this.checkScaleWarning);
                                 }
                         }else{
-                            this.warning.setText("Please enter a weight!");
+                            this.warning.setText(this.enterWeightWarning);
                         }
                     }
                 }
             });
         } else if(this.pastWaterScene){
             //scene resets this stuff if not stated? create run multiple times? not starting new scene, same because values for iWeight stay the same??
-            this.iWeightLabel.textContent = "Initial Weight: " + this.iWeight + " g";
+            //maybe form.html gets reset??
+            this.updateLabels();
             this.iWeightElement.style.display = "none";
             this.iSubmitElement.style.display = "none";
 
@@ -153,24 +173,24 @@ export default class WeighScene extends BaseScene {
                     this.fWeight = parseFloat(this.fWeightElement.value);
                     if(this.fWeightLabel){
                         if(this.fWeight){
-                            this.fWeightLabel.textContent = "Final Weight: " + this.fWeight + " g";
+                            this.updateLabels();
                                 if(this.fWeight === this.glassware.weight+this.glassware.waterAmount){
                                     this.fWeightElement.style.display = "none";
                                     this.fSubmitElement.style.display = "none";
                                     this.warning.setText("");
 
-                                    this.calcVars();
+                                    this.updateCalcVars();
                                     this.calcText.setText("DENSITY = MASS / VOLUME" +
                                     "\nVOLUME = MASS / DENSITY" +
                                     "\n\nWater's density varies slightly with its temperature" +
-                                    "\nIf the water's temperature is " + this.temp + " °F, it's density is " + this.density + " g/ml"+
+                                    "\nIf the water's temperature is " + this.temp + " °C, it's density is " + this.density + " g/ml"+
                                     "\n\nVOLUME = " + this.mass + " g / " + this.density + " g/ml"+
                                     "\nVOLUME = " + this.volume + " ml");
                                 }else{
-                                    this.warning.setText("Check the scale again");
+                                    this.warning.setText(this.checkScaleWarning);
                                 }
                         }else{
-                            this.warning.setText("Please enter a weight!");
+                            this.warning.setText(this.enterWeightWarning);
                         }
                     }
                 }
@@ -179,11 +199,7 @@ export default class WeighScene extends BaseScene {
 
     }
 
-    calcVars(){
-        this.mass = this.fWeight - this.iWeight;
-        this.volume = this.mass/this.density;
-    }
-
+    
     update() {
     }
 
