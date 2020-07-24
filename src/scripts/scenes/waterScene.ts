@@ -13,6 +13,7 @@ export default class WaterScene extends BaseScene {
 
   addButton: InteractiveButton;
   subtractButton: InteractiveButton;
+  nextSceneButton: InteractiveButton;
 
   testtext;
 
@@ -51,6 +52,11 @@ export default class WaterScene extends BaseScene {
       this.glassware.subtractWater();
     });
 
+    this.nextSceneButton = new InteractiveButton(this, buttonX, 500, 'MOVE TO NEXT STEP').on('pointerup', () => {
+      this.nextSceneButton.buttonHover();
+      this.scene.start('WeighScene',{glasstype: this.glasstype, waterAmount: this.glassware.waterAmount});
+    });
+
 
     //text
     this.add.text(buttonX, 200, 'TARGET\nFill to ' + this.glassware.target + 'ml',
@@ -70,8 +76,8 @@ export default class WaterScene extends BaseScene {
       });
 
     //for debug      
-    this.testtext = this.add.text(buttonX, 500, 'WATER: ' + this.glassware.waterAmount, { color: '#000', backgroundColor: '#999999', padding: 20 });
-    this.add.text(buttonX, 600, 'GLASSTYPE: ' + this.glasstype, { color: '#000', backgroundColor: '#999999', padding: 20 });
+    //this.testtext = this.add.text(buttonX, 500, 'WATER: ' + this.glassware.waterAmount, { color: '#000', backgroundColor: '#999999', padding: 20 });
+    //this.add.text(buttonX, 600, 'GLASSTYPE: ' + this.glasstype, { color: '#000', backgroundColor: '#999999', padding: 20 });
 
 
   }
@@ -79,8 +85,7 @@ export default class WaterScene extends BaseScene {
 
 
   update() {
-    this.testtext.setText('WATER: ' + this.glassware.waterAmount);
-    this.checkEnd();
+    //this.testtext.setText('WATER: ' + this.glassware.waterAmount);
   }
 
   checkEnd(){
