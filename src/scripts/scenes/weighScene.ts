@@ -40,6 +40,11 @@ export default class WeighScene extends BaseScene {
 
     line: InputLine;
 
+    iWeightInput: InputLine;
+    fWeightInput: InputLine;
+    densityInput: InputLine;
+    answerInput: InputLine;
+
     constructor() {
         super('WeighScene');
     }
@@ -80,7 +85,7 @@ export default class WeighScene extends BaseScene {
             strokeThickness: 3
         });
 
-        this.warning = this.add.text(820,100,"",{
+        this.warning = this.add.text(820,50,"",{
             fontFamily: 'Arial',
             fontSize: '24px',
             color: '#FF00FF',
@@ -199,18 +204,38 @@ export default class WeighScene extends BaseScene {
             });
         }
 */
+        let x = 3*this.WIDTH/4;
+        let y = this.HEIGHT/2;
+        this.add.rectangle(x, y, this.WIDTH/2.5, this.HEIGHT, 0x000 );
 
-        this.line = new InputLine(this, 200,200, "Hihihi", "someplaceholder");
-        this.line.form.on('click', (event) => {
-            if (event.target.name === 'submit' ){
-                //hmmm
-            }
-        });
+        this.iWeightInput= new InputLine(this, x, 150, "Initial Weight", "Enter initial weight");
+
+        if(!this.pastWaterScene){
+            this.iWeightInput.addOnClick(() => {
+                if(this.iWeightInput.value == this.glassware.weight){
+                    this.iWeightInput.showNormal("Initial Weight: " + this.iWeightInput.value + " g");
+                    this.iWeightInput.hideInput();
+                    
+                    this.warning.setText(this.clickGlassWarning);
+                    this.glassware.setTintFill(0xFF00FF);
+                    this.glassware.setInteractive();
+                }else{
+                    this.iWeightInput.showWarning(this.checkScaleWarning);
+                }
+            });
+        }else{
+            this.iWeightInput.hideInput();
+            this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
+
+            this.fWeightInput= new InputLine(this, x, 250, "Final Weight", "Enter final weight");
+            this.densityInput= new InputLine(this, x, 350, "Water Density", "Enter water density");
+            this.answerInput= new InputLine(this, x, 450, "Calculate Volume of Water", "Enter water volume");
+        }
     }
 
     
     update() {
-        this.warning.setText("val: " + this.line.value);
+        //this.warning.setText("val: " + this.line.value);
     }
 
 
