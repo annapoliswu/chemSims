@@ -3,7 +3,7 @@ export default class InputLine{
     private label: HTMLParagraphElement;
     private input: HTMLInputElement;
     private submit: HTMLInputElement;
-    public value: number;
+    public value: number = 999;
     static numInstances: number = 0; //count inside causing errors?? not sure
     
 
@@ -14,9 +14,9 @@ export default class InputLine{
         //this.form = scene.add.dom(x, y).createFromHTML(htmlstring);
 
         this.form = scene.add.dom(x, y).createFromCache('inputLine');
-        this.label = (<HTMLParagraphElement>document.getElementsByClassName("label")[InputLine.numInstances]);
-        this.input = (<HTMLInputElement>document.getElementsByClassName("input")[InputLine.numInstances]);
-        this.submit = (<HTMLInputElement>document.getElementsByClassName("submit")[InputLine.numInstances]);
+        this.label = (<HTMLParagraphElement>document.getElementsByClassName("label")[n]);
+        this.input = (<HTMLInputElement>document.getElementsByClassName("input")[n]);
+        this.submit = (<HTMLInputElement>document.getElementsByClassName("submit")[n]);
         
         this.setLabel(label);
         this.setPlaceholder(placeholder);
@@ -27,7 +27,6 @@ export default class InputLine{
                 this.value =  parseFloat(this.input.value);
             }
         });
-        InputLine.numInstances++;
     }
 
     setLabel(newLabel: string){

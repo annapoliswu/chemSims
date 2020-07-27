@@ -209,6 +209,7 @@ export default class WeighScene extends BaseScene {
         this.add.rectangle(x, y, this.WIDTH/2.5, this.HEIGHT, 0x000 );
 
         this.iWeightInput= new InputLine(this, x, 150, "Initial Weight", "Enter initial weight",0);
+        this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
 
         if(!this.pastWaterScene){
             this.iWeightInput.addOnClick(() => {
@@ -224,7 +225,7 @@ export default class WeighScene extends BaseScene {
                 }
             });
         }else{
-            this.iWeightInput.hideInput();
+            //this.iWeightInput.hideInput();
             this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
 
             this.fWeightInput= new InputLine(this, x, 250, "Final Weight", "Enter final weight",1);
