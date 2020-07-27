@@ -1,4 +1,5 @@
 import Glassware from "../objects/glassware";
+import InputLine from "./../objects/inputLine";
 import BaseScene from "./baseScene";
 import InteractiveButton from "../objects/interactiveButton";
 import Beaker from '../objects/Beaker';
@@ -37,7 +38,7 @@ export default class WeighScene extends BaseScene {
     checkScaleWarning: string = "Check the scale again";
     enterWeightWarning: string = "Please enter a weight";
 
-    
+    line: InputLine;
 
     constructor() {
         super('WeighScene');
@@ -118,11 +119,12 @@ export default class WeighScene extends BaseScene {
 
     //can simplify later
     makeNotes(){
+        /*
         let x = 3*this.WIDTH/4;
         let y = this.HEIGHT/2;
         this.add.rectangle(x, y, this.WIDTH/2.5, this.HEIGHT, 0x000 );
 
-        /*note: must wrap returned doc element with HTMLInputElement for inputs; no value property on HTMLElement */
+        //note: must wrap returned doc element with HTMLInputElement for inputs; no value property on HTMLElement
         let form = this.add.dom(x, 200).createFromCache('form');
                 
         this.iWeightLabel = (<HTMLParagraphElement>document.getElementById("iWeightLabel")); //gets html part
@@ -196,11 +198,19 @@ export default class WeighScene extends BaseScene {
                 }
             });
         }
+*/
 
+        this.line = new InputLine(this, 200,200, "Hihihi", "someplaceholder");
+        this.line.form.on('click', (event) => {
+            if (event.target.name === 'submit' ){
+                //hmmm
+            }
+        });
     }
 
     
     update() {
+        this.warning.setText("val: " + this.line.value);
     }
 
 
