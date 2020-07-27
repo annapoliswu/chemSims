@@ -208,7 +208,7 @@ export default class WeighScene extends BaseScene {
         let y = this.HEIGHT/2;
         this.add.rectangle(x, y, this.WIDTH/2.5, this.HEIGHT, 0x000 );
 
-        this.iWeightInput= new InputLine(this, x, 150, "Initial Weight", "Enter initial weight");
+        this.iWeightInput= new InputLine(this, x, 150, "Initial Weight", "Enter initial weight",0);
 
         if(!this.pastWaterScene){
             this.iWeightInput.addOnClick(() => {
@@ -227,9 +227,9 @@ export default class WeighScene extends BaseScene {
             this.iWeightInput.hideInput();
             this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
 
-            this.fWeightInput= new InputLine(this, x, 250, "Final Weight", "Enter final weight");
-            this.densityInput= new InputLine(this, x, 350, "Water Density", "Enter water density");
-            this.answerInput= new InputLine(this, x, 450, "Calculate Volume of Water", "Enter water volume");
+            this.fWeightInput= new InputLine(this, x, 250, "Final Weight", "Enter final weight",1);
+            this.densityInput= new InputLine(this, x, 350, "Water Density", "Enter water density",2);
+            this.answerInput= new InputLine(this, x, 450, "Calculate Volume of Water", "Enter water volume",3);
         }
     }
 

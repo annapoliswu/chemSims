@@ -4,18 +4,19 @@ export default class InputLine{
     private input: HTMLInputElement;
     private submit: HTMLInputElement;
     public value: number;
+    static numInstances: number = 0; //count inside causing errors?? not sure
     
 
-    constructor(scene: Phaser.Scene, x: number, y: number, label: string, placeholder: string) {
+    constructor(scene: Phaser.Scene, x: number, y: number, label: string, placeholder: string, n: number) {
 
         //doesn't work either.. setting previous elements, getElement function maybe -> undefined referring to same id. 
         //let htmlstring = '<div id="container" class="container"><p id="label" class="label">Initial Weight: </p><input type="number" id="input" name="input" placeholder="aa"onkeydown="return event.keyCode !== 69"><input type="button" id="submit" name="submit" value="SUBMIT"></div>'
         //this.form = scene.add.dom(x, y).createFromHTML(htmlstring);
 
-        //this.form = scene.add.dom(x, y).createFromCache('inputLine');
-        this.label = (<HTMLParagraphElement>document.getElementById("label")); //gets html part
-        this.input = (<HTMLInputElement>document.getElementById("input"));
-        this.submit = (<HTMLInputElement>document.getElementById("submit"));
+        this.form = scene.add.dom(x, y).createFromCache('inputLine');
+        this.label = (<HTMLParagraphElement>document.getElementsByClassName("label")[InputLine.numInstances]);
+        this.input = (<HTMLInputElement>document.getElementsByClassName("input")[InputLine.numInstances]);
+        this.submit = (<HTMLInputElement>document.getElementsByClassName("submit")[InputLine.numInstances]);
         
         this.setLabel(label);
         this.setPlaceholder(placeholder);
@@ -26,6 +27,7 @@ export default class InputLine{
                 this.value =  parseFloat(this.input.value);
             }
         });
+        InputLine.numInstances++;
     }
 
     setLabel(newLabel: string){
