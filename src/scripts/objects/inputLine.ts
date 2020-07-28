@@ -14,9 +14,9 @@ export default class InputLine{
         //this.form = scene.add.dom(x, y).createFromHTML(htmlstring);
 
         this.form = scene.add.dom(x, y).createFromCache('inputLine');
-        this.label = (<HTMLParagraphElement>document.getElementsByClassName("label")[n]);
-        this.input = (<HTMLInputElement>document.getElementsByClassName("input")[n]);
-        this.submit = (<HTMLInputElement>document.getElementsByClassName("submit")[n]);
+        this.label = (<HTMLInputElement>this.form.node.getElementsByClassName("label")[0]);
+        this.input = (<HTMLInputElement>this.form.node.getElementsByClassName("input")[0]);
+        this.submit = (<HTMLInputElement>this.form.node.getElementsByClassName("submit")[0]);
         
         this.setLabel(label);
         this.setPlaceholder(placeholder);

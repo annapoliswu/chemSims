@@ -70,6 +70,7 @@ export default class WeighScene extends BaseScene {
         }).on('pointerup', ()=> {
             this.glassware.setTintFill(0xCCC); 
             this.pastWaterScene = true;
+            this.scene.sleep();
             this.scene.start('WaterScene', {glasstype: this.glasstype});
         });
         
@@ -236,7 +237,8 @@ export default class WeighScene extends BaseScene {
 
     
     update() {
-        //this.warning.setText("val: " + this.line.value);
+        this.warning.setText("val: " + this.iWeightInput.value);
+        this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
     }
 
 

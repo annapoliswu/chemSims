@@ -90,7 +90,8 @@ export default class WaterScene extends BaseScene {
 
   checkEnd(){
     if(this.glassware.waterAmount == this.glassware.target){  //maybe a submit button instead? or a text promp to move on 
-      this.scene.start('WeighScene',{glasstype: this.glasstype, waterAmount: this.glassware.waterAmount});
+      this.scene.wake();
+      this.scene.resume('WeighScene',{glasstype: this.glasstype, waterAmount: this.glassware.waterAmount});
     }
   }
 
