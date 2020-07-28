@@ -9,7 +9,7 @@ export default class WeighScene extends BaseScene {
 
     pastWaterScene: boolean = false;
     waterAmountStart: number;
-
+/*
     iWeight: number;
     iWeightLabel: HTMLParagraphElement;
     iWeightElement: HTMLInputElement;
@@ -20,7 +20,7 @@ export default class WeighScene extends BaseScene {
     fWeightElement: HTMLInputElement;
     fSubmitElement: HTMLInputElement;
     fContainer: HTMLDivElement;
-
+*/
     temp: number;   //randomize
     density: number;    //based on temp table
     mass: number; 
@@ -59,7 +59,6 @@ export default class WeighScene extends BaseScene {
         this.add.rectangle(this.WIDTH/2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99);
         this.chemScale = this.add.image(this.WIDTH/3.5, this.HEIGHT-160,'scale');
 
-        this.makeNotes();
         this.createGlassware(this.WIDTH/3.5, 240, this.waterAmountStart);
         this.glassware.on('pointerover', () => {
             this.glassware.alpha = .2;
@@ -86,7 +85,7 @@ export default class WeighScene extends BaseScene {
             strokeThickness: 3
         });
 
-        this.warning = this.add.text(820,50,"",{
+        this.warning = this.add.text(820,25,"",{
             fontFamily: 'Arial',
             fontSize: '24px',
             color: '#FF00FF',
@@ -105,9 +104,11 @@ export default class WeighScene extends BaseScene {
             }
         });
 
+        this.makeNotes();
+
     }
 
-
+/*
     updateCalcVars(){
         this.mass = this.fWeight - this.iWeight;
         this.volume = this.mass/this.density;
@@ -122,7 +123,7 @@ export default class WeighScene extends BaseScene {
             this.fWeightLabel.textContent = "Final Weight: " + this.fWeight + " g";
         }
     }
-
+*/
     //can simplify later
     makeNotes(){
         /*
@@ -207,9 +208,9 @@ export default class WeighScene extends BaseScene {
 */
         let x = 3*this.WIDTH/4;
         let y = this.HEIGHT/2;
-        this.add.rectangle(x, y, this.WIDTH/2.5, this.HEIGHT, 0x000 );
+        this.add.rectangle(x, y, this.WIDTH/2.5, this.HEIGHT, 0x000 ).setDepth(-99);
 
-        this.iWeightInput= new InputLine(this, x, 150, "Initial Weight", "Enter initial weight",0);
+        this.iWeightInput= new InputLine(this, x, 125, "Initial Weight", "Enter initial weight");
         this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
 
         if(!this.pastWaterScene){
@@ -229,16 +230,18 @@ export default class WeighScene extends BaseScene {
             //this.iWeightInput.hideInput();
             this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
 
-            this.fWeightInput= new InputLine(this, x, 250, "Final Weight", "Enter final weight",1);
-            this.densityInput= new InputLine(this, x, 350, "Water Density", "Enter water density",2);
-            this.answerInput= new InputLine(this, x, 450, "Calculate Volume of Water", "Enter water volume",3);
+            this.fWeightInput= new InputLine(this, x, 200, "Final Weight", "Enter final weight");
+            this.densityInput= new InputLine(this, x, 275, "Water Density", "Enter water density");
+            //this.answerInput= new InputLine(this, x, 350, "Calculate Volume of Water", "Enter water volume");
+
+            this.calcText.setText("checking 1,2");
         }
     }
 
     
     update() {
-        this.warning.setText("val: " + this.iWeightInput.value);
-        this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
+        //this.warning.setText("val: " + this.iWeightInput.value);
+        //this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
     }
 
 
