@@ -71,7 +71,7 @@ export default class WeighScene extends BaseScene {
             this.glassware.setTintFill(0xCCC); 
             this.pastWaterScene = true;
             this.scene.sleep();
-            this.scene.start('WaterScene', {glasstype: this.glasstype});
+            this.scene.run('WaterScene', {glasstype: this.glasstype});
             //still not working, this.scene.switch seems to be what I want, but can't pass values
         });
         
