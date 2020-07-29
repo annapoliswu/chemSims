@@ -70,9 +70,9 @@ export default class InputLine{
     }
 
     showCorrect(text : string){
-        this.input.style.color = "green";
-        this.input.style.borderColor = "green";
-        this.label.style.color = "green";
+        this.input.style.color = "#b6ff7a";
+        this.input.style.borderColor = "#b6ff7a";
+        this.label.style.color = "#b6ff7a";
         this.setLabel(text);
     }
 
