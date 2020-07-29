@@ -1,8 +1,11 @@
 
 export default class InteractiveButton extends Phaser.GameObjects.Text {
+    bgColor:string;
 
-    constructor(scene: Phaser.Scene, x: number, y: number, name: string) {
-        super(scene, x, y, name, { backgroundColor: '#000', padding:{left:20,top:20}});
+    constructor(scene: Phaser.Scene, x: number, y: number, name: string, bgColor: string) {
+        super(scene, x, y, name, { backgroundColor: bgColor, padding:{left:20,top:20}});
+        this.bgColor = bgColor;
+
         scene.add.existing(this);
         
         this.on('pointerover', () => {this.buttonHover()})
@@ -12,13 +15,15 @@ export default class InteractiveButton extends Phaser.GameObjects.Text {
         this.setInteractive();
     }
     
+
     buttonHover(){
         this.setStyle({backgroundColor:'#2badf1'});
     }
     buttonRest(){
-        this.setStyle({backgroundColor:'#000'});
+        this.setStyle({backgroundColor:this.bgColor});
     }
     buttonDown(){
         this.setStyle({backgroundColor:'#2289bf'});
     }
+
 }
