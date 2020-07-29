@@ -81,7 +81,7 @@ export default class WeighScene extends BaseScene {
         this.iWeightScale = Math.round((this.glassware.weight+this.randomNum1*10)*100)/100;
         this.fWeightScale = Math.round((this.iWeightScale + this.waterAmountStart)*100)/100;
 
-        this.scaleText = this.add.text(160, 605, this.iWeightScale.toFixed(2) + ' g', {
+        this.scaleText = this.add.text(160, 605, this.iWeightScale.toFixed(2) + " g", {
             fontSize: '48px',
             color: '#000000',
             stroke: '#000000',
@@ -136,7 +136,7 @@ export default class WeighScene extends BaseScene {
                 }
             });
         }else{
-            this.scaleText.setText(this.fWeightScale.toFixed(2));
+            this.scaleText.setText(this.fWeightScale.toFixed(2) + " g");
 
             this.iWeightInput.value = this.iWeight;
             this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
@@ -162,7 +162,7 @@ export default class WeighScene extends BaseScene {
                 }
             });
             
-            this.waterTableButton = new InteractiveButton(this, x-175, 325, "TEMP-DENSITY TABLE", '#333');
+            this.waterTableButton = new InteractiveButton(this, x-175, 325, "TEMP-DENSITY TABLE", "#444");
             this.waterTableButton.on('pointerup', ()=> {
                 this.waterTableButton.buttonHover();
                 if(this.waterTable.alpha == 0){

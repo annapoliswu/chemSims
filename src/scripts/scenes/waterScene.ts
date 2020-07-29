@@ -42,17 +42,17 @@ export default class WaterScene extends BaseScene {
 
     //buttons
     let buttonX = 3 * this.WIDTH / 4;
-    this.addButton = new InteractiveButton(this, buttonX, 300, 'ADD WATER', '#000').on('pointerup', () => {
+    this.addButton = new InteractiveButton(this, buttonX, 300, 'ADD WATER', '#444').on('pointerup', () => {
       this.addButton.buttonHover();
       this.glassware.addWater();
     });
 
-    this.subtractButton = new InteractiveButton(this, buttonX, 375, 'SUBTRACT WATER', '#000').on('pointerup', () => {
+    this.subtractButton = new InteractiveButton(this, buttonX, 375, 'SUBTRACT WATER', '#444').on('pointerup', () => {
       this.subtractButton.buttonHover();
       this.glassware.subtractWater();
     });
 
-    this.nextSceneButton = new InteractiveButton(this, buttonX, 500, 'MOVE TO NEXT STEP', '#3330AA').on('pointerup', () => {
+    this.nextSceneButton = new InteractiveButton(this, buttonX, 500, 'MOVE TO NEXT STEP', '#000').on('pointerup', () => {
       this.nextSceneButton.buttonHover();
       this.scene.start('WeighScene',{glasstype: this.glasstype, waterAmount: this.glassware.waterAmount});
     });
