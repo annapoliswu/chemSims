@@ -26,8 +26,8 @@ export default class WeighScene extends BaseScene {
     scaleText: Phaser.GameObjects.Text;
     calcText: Phaser.GameObjects.Text;
 
-    warning: Phaser.GameObjects.Text;
-    clickGlassWarning: string = "<- Click glass to add water";
+    clickText: Phaser.GameObjects.Text;
+    clickGlassWarning: string = "CLICK GLASS TO ADD WATER";
     checkScaleWarning: string = "Check the scale again";
     enterWeightWarning: string = "Please enter a weight";
 
@@ -35,13 +35,15 @@ export default class WeighScene extends BaseScene {
     iWeightInput: InputLine;
     fWeightInput: InputLine;
     densityInput: InputLine;
-    answerInput: InputLine;
+    volumeInput: InputLine;
 
-    randomNum1: number = Math.random(); 
-    randomNum2: number = Math.random();
+    randomInitial: number;
+    randomFinal: number;
 
     waterTableButton: InteractiveButton;
     waterTable: Phaser.GameObjects.Image;
+    tryAnotherButton: InteractiveButton;
+    tryAgainButton: InteractiveButton;
 
     constructor() {
         super('WeighScene');
@@ -52,6 +54,7 @@ export default class WeighScene extends BaseScene {
         this.waterAmountStart = data.waterAmount;
     }
 
+
     create() {
         super.create();
         this.add.rectangle(this.WIDTH/2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99);
@@ -59,27 +62,19 @@ export default class WeighScene extends BaseScene {
         
         this.waterTable = this.add.image(400, 350,'waterTable').setScale(.7).setDepth(99);
         this.waterTable.alpha = 0;
+        this.randomInitial = Math.random(); 
+        this.randomFinal = Math.random(); 
+
+        let x = 3*this.WIDTH/4;
+        let y = this.HEIGHT/2;
+        this.add.rectangle(x, y, this.WIDTH/2.2, this.HEIGHT, 0x000 ).setDepth(-98);
 
         this.createGlassware(this.WIDTH/3.5, 240, this.waterAmountStart);
-        this.glassware.on('pointerover', () => {
-            this.glassware.alpha = .2;
-        }).on('pointerout', ()=> {
-            this.glassware.alpha = 1;
-        }).on('pointerdown', ()=> {
-            this.glassware.setTintFill(0xFF00FF);
-        }).on('pointerup', ()=> {
-            this.glassware.setTintFill(0xCCC); 
-            this.pastWaterScene = true;
-            this.scene.sleep();
-            this.scene.run('WaterScene', {glasstype: this.glasstype});
-            //still not working, this.scene.switch seems to be what I want, but can't pass values
-        });
         
         this.setTempDensity();
         this.targetMass = this.glassware.target;
         this.targetVolume = this.glassware.target/this.density;
-        this.iWeightScale = Math.round((this.glassware.weight+this.randomNum1*10)*100)/100;
-        this.fWeightScale = Math.round((this.iWeightScale + this.waterAmountStart)*100)/100;
+        this.iWeightScale = Math.round((this.glassware.weight+ this.randomInitial *10)*100)/100;
 
         this.scaleText = this.add.text(160, 605, this.iWeightScale.toFixed(2) + " g", {
             fontSize: '48px',
@@ -88,12 +83,14 @@ export default class WeighScene extends BaseScene {
             strokeThickness: 3
         });
 
-        this.warning = this.add.text(820,25,"",{
+        this.clickText = this.add.text(550,150,"",{
             fontFamily: 'Arial',
-            fontSize: '24px',
-            color: '#FF00FF',
+            fontSize: '36px',
+            color: '#000',
+            align: 'left',
+            fontStyle: 'bold',
             wordWrap: {
-                width: 600
+                width:150
             }
         });
 
@@ -107,20 +104,12 @@ export default class WeighScene extends BaseScene {
             }
         });
 
-        this.makeNotes();
+        let inputX = x - 20;
+        let inputY = 100;
 
-    }
-
-    makeNotes(){
-        let x = 3*this.WIDTH/4;
-        let y = this.HEIGHT/2;
-        this.add.rectangle(x, y, this.WIDTH/2.2, this.HEIGHT, 0x000 ).setDepth(-98);
-
-        //if left inside if, doesn't create line when resuming
-        this.iWeightInput= new InputLine(this, x, 125, "Initial Weight", "Enter initial weight");
+        this.iWeightInput= new InputLine(this, inputX, inputY, "Initial Weight", "Enter initial weight");
         this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
 
-        if(!this.pastWaterScene){
             this.iWeightInput.addOnClick(() => {
                 if(this.iWeightInput.value == this.iWeightScale){
 
@@ -128,21 +117,15 @@ export default class WeighScene extends BaseScene {
                     this.iWeight = this.iWeightInput.value;
                     this.iWeightInput.hideInput();
                     
-                    this.warning.setText(this.clickGlassWarning);
+                    this.clickText.setText(this.clickGlassWarning);
                     this.glassware.setTintFill(0xFF00FF);
                     this.glassware.setInteractive();
                 }else{
                     this.iWeightInput.showWarning(this.checkScaleWarning);
                 }
             });
-        }else{
-            this.scaleText.setText(this.fWeightScale.toFixed(2) + " g");
-
-            this.iWeightInput.value = this.iWeight;
-            this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
-            this.iWeightInput.hideInput();
-
-            this.fWeightInput= new InputLine(this, x, 175, "Final Weight: ?", "Enter final weight");
+            
+            this.fWeightInput= new InputLine(this, inputX, inputY+50, "Final Weight: ?", "Enter final weight");
             this.fWeightInput.addOnClick( () => {
                 if(this.fWeightInput.value == this.fWeightScale){
                     this.fWeightInput.showNormal("Final Weight: " + this.fWeightInput.value + " g");
@@ -150,9 +133,9 @@ export default class WeighScene extends BaseScene {
                 }else{
                     this.fWeightInput.showWarning(this.checkScaleWarning);
                 }
-            });
+            }); 
 
-            this.densityInput = new InputLine(this, x, 275, "Temp: " + this.temp + " °C,  " + "Density: ?", "Enter water density");
+            this.densityInput = new InputLine(this, inputX, inputY+130, "Temp: " + this.temp + " °C,  " + "Density: ?", "Enter water density");
             this.densityInput.addOnClick( ()=> {
                 if(this.densityInput.value == this.density){
                     this.densityInput.showNormal("Temp: " + this.temp + " °C,  " + "Density: " + this.density + " g/ml");
@@ -162,7 +145,7 @@ export default class WeighScene extends BaseScene {
                 }
             });
             
-            this.waterTableButton = new InteractiveButton(this, x-175, 325, "TEMP-DENSITY TABLE", "#444");
+            this.waterTableButton = new InteractiveButton(this, inputX-175, inputY+180, "TEMP-DENSITY TABLE", "#444");
             this.waterTableButton.on('pointerup', ()=> {
                 this.waterTableButton.buttonHover();
                 if(this.waterTable.alpha == 0){
@@ -172,15 +155,80 @@ export default class WeighScene extends BaseScene {
                 }
             });
             
-            this.answerInput= new InputLine(this, x, 450, "Calculate Volume of Water", "Enter water volume");
+            this.volumeInput = new InputLine(this, inputX, inputY+480, "Calculate Volume of Water", "Enter water volume");
+            this.volumeInput.addOnClick( ()=> {
+                if((Math.round(this.volumeInput.value*100)/100) == this.volume){
+                    this.volumeInput.showNormal("Volume: " + this.volume);
+                    this.volumeInput.hideInput();
+                }else{
+                    this.volumeInput.showWarning("Calculate using Volume = Mass/Density");
+                    alert(this.volume);
+                }
+            });
 
-            //this.calcText.setText("checking 1,2");
+            this.tryAgainButton = new InteractiveButton(this, inputX-175, inputY+550 , "START OVER", "#444");
+            this.tryAgainButton.on('pointerup', ()=> {
+                this.scene.restart();
+            });
+
+            this.tryAnotherButton = new InteractiveButton(this, inputX-25, inputY+550, "TRY ANOTHER GLASS", "#444");
+            this.tryAnotherButton.on('pointerup', ()=> {
+                this.scene.start('SelectionScene');
+            });
+
+            this.fWeightInput.hide();
+            this.densityInput.hide();
+            this.waterTableButton.alpha = 0;
+            this.volumeInput.hide();
+            
+        this.glassware.on('pointerover', () => {
+            this.glassware.alpha = .2;
+        }).on('pointerout', ()=> {
+            this.glassware.alpha = 1;
+        }).on('pointerdown', ()=> {
+            this.glassware.setTintFill(0xFF00FF);
+        }).on('pointerup', ()=> {
+            this.glassware.alpha = 1;
+            this.glassware.setTintFill(0xCCC); 
+            this.pastWaterScene = true;
+            this.scene.sleep();
+            this.scene.run('WaterScene', {glasstype: this.glasstype});
+        });
+
+        
+        this.events.on('wake',this.onWake,this);
+
+
+    }
+
+    onWake(sys, data){
+        this.input.disable(this.glassware);
+
+        this.waterAmountStart = data.waterAmount;
+        this.glassware.setWater(this.waterAmountStart);
+        this.fWeightScale = Math.round(((this.iWeightScale + this.waterAmountStart) + (this.randomFinal * 10))*100)/100;
+        this.scaleText.setText(this.fWeightScale.toFixed(2) + " g");
+
+        this.mass = this.fWeightScale - this.iWeightScale;
+        this.volume = Math.round(((this.mass/this.density)*100))/100;
+
+        this.fWeightInput.show();
+        this.densityInput.show();
+        this.waterTableButton.alpha = 1;
+        this.clickText.alpha = 0;
+        this.volumeInput.show();
+    }
+    
+    withinRange(num: number, lower: number, upper:number):boolean{
+        if(num <= upper && num >= lower){
+            return true;
+        }else{
+            return false;
         }
     }
 
-    
     update() {
-        //this.warning.setText("val: " + this.iWeightInput.value);
+        //this.clickText.setText("val: " + this.iWeightInput.value);
         //this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
     }
 
@@ -202,7 +250,7 @@ export default class WeighScene extends BaseScene {
                 break;
             case 3:
                 this.temp = 21.1;
-                this.density = 0.997992;
+                this.density = 0.99797;
                 break;
             case 4:
                 this.temp = 23.1;

@@ -55,6 +55,14 @@ export default class InputLine{
         this.submit.style.display = "inline";
     }
 
+    show(){
+        this.form.alpha = 1;
+    }
+
+    hide(){
+        this.form.alpha = 0;
+    }
+
     showNormal(text : string){
         this.input.style.color = "black";
         this.input.style.borderColor = "black";
