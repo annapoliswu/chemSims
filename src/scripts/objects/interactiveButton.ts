@@ -26,4 +26,9 @@ export default class InteractiveButton extends Phaser.GameObjects.Text {
         this.setStyle({backgroundColor:'#2289bf'});
     }
 
+    changeColor(color: string){
+        this.bgColor = color;
+        this.setStyle({backgroundColor: this.bgColor});
+    }
+
 }
