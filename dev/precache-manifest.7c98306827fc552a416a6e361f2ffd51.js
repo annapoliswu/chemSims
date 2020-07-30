@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/devassets/beaker800ml_fill2.png"
   },
   {
-    "revision": "ebb65ee92b1547ff04eb6493c76aa6e5",
+    "revision": "b4d2803fd4edc0261b06eb52e6cd6166",
     "url": "/chemSims/devassets/citations.md"
   },
   {
@@ -28,7 +28,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/devassets/erlenmeyerflask.png"
   },
   {
-    "revision": "a48baf1ee112cd4cf9279ac2a5f092d2",
+    "revision": "1099017fc9045c7677e258ddfb233c1f",
     "url": "/chemSims/devassets/form.html"
   },
   {
@@ -56,6 +56,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/devassets/icons/icons8-game-controller-16.png"
   },
   {
+    "revision": "5cd6462e4e3083f8e6a4917259f0d739",
+    "url": "/chemSims/devassets/inputLine.html"
+  },
+  {
     "revision": "c411a95d1ed424b4b36f93f47f31599f",
     "url": "/chemSims/devassets/orig_scale.png"
   },
@@ -64,19 +68,23 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/devassets/scale.png"
   },
   {
+    "revision": "fed9f0e05ea3b224723e82cf468ac872",
+    "url": "/chemSims/devassets/watertable.png"
+  },
+  {
     "revision": "53cefca2a0f75654486b180949686165",
     "url": "/chemSims/devfavicon.ico"
   },
   {
-    "revision": "8ba7268c04db4e505b6f",
-    "url": "/chemSims/devgen.main.e1b379ac175e5b30e75a.bundle.js"
+    "revision": "ad1228bdf17d8a567e62",
+    "url": "/chemSims/devgen.main.44d67b07b28797486f80.bundle.js"
   },
   {
-    "revision": "9342c45143ae59fc4fb8",
-    "url": "/chemSims/devgen.vendors.8fb6f695a01c23b9ce2e.bundle.js"
+    "revision": "2ddc4297b371746c1723",
+    "url": "/chemSims/devgen.vendors.2b68759d0573537ed4be.bundle.js"
   },
   {
-    "revision": "750a1fdf5a2d476a471c953964179cad",
+    "revision": "da9f31781214f34f1f612a6d2f84824b",
     "url": "/chemSims/devindex.html"
   },
   {
@@ -84,7 +92,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/devmanifest.json"
   },
   {
-    "revision": "a8029749c7edd38204cf67287cb14139",
+    "revision": "701445d8817f73e3da17e450b69faa36",
     "url": "/chemSims/devsw.js"
   }
 ]);
