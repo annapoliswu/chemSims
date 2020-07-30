@@ -1,0 +1,60 @@
+<div id="allContainer" class="container">
+
+    <div id="iContainer" class="container">
+        <p id="iWeightLabel" class="label">Initial Weight: </p>
+        <input type="number" id="iWeight" name="iWeight" placeholder="Enter Initial Weight"
+            onkeydown="return event.keyCode !== 69">
+        <input type="button" id="iSubmit" name="iSubmit" value="SUBMIT"><br />
+    </div>
+
+    <div id="fContainer" class = "container">
+        <p id="fWeightLabel" class="label">Final Weight: </p>
+        <input type="number" id="fWeight" name="fWeight" placeholder="Enter Final Weight"
+            onkeydown="return event.keyCode !== 69">
+        <input type="button" id="fSubmit" name="fSubmit" value="SUBMIT"><br />
+    </div>
+<!--
+    <div id="cContainer" class = "container">
+        <p>
+            <span>DENSITY = MASS / VOLUME</span>
+            <br><br>Water's density varies slightly with its temperature.
+            <br>If the water's temperature is <span>70</span><span>°F</span>, it's density is <span>0.998</span>.
+            <br><br><span>0.998</span> = <span id = 'mass'></span> 
+        </p>
+    </div>
+-->
+
+</div>
+
+<style>
+    p, span {
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 24px;
+    }
+
+    span{
+        background-color: rgb(9, 9, 88);
+    }
+
+    input {
+        font-size: 16px;
+    }
+
+    #allContainer {
+        width: 400px;
+        border: 2px outset blue;
+        text-align: left;
+        padding: 20px;
+    }
+
+
+    .container {
+        padding-bottom: 10px;
+    }
+
+    #fContainer{
+        display: none;
+    }
+    
+</style>
