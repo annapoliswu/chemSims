@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/betaassets/beaker800ml_fill2.png"
   },
   {
-    "revision": "b4d2803fd4edc0261b06eb52e6cd6166",
+    "revision": "ebb65ee92b1547ff04eb6493c76aa6e5",
     "url": "/chemSims/betaassets/citations.md"
   },
   {
@@ -28,7 +28,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/betaassets/erlenmeyerflask.png"
   },
   {
-    "revision": "1099017fc9045c7677e258ddfb233c1f",
+    "revision": "051dd3ea3e16c71bf197fb0f2fb01db6",
     "url": "/chemSims/betaassets/form.html"
   },
   {
@@ -56,7 +56,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/betaassets/icons/icons8-game-controller-16.png"
   },
   {
-    "revision": "5cd6462e4e3083f8e6a4917259f0d739",
+    "revision": "2b8870d85709343e62cf0d0081754324",
     "url": "/chemSims/betaassets/inputLine.html"
   },
   {
@@ -76,15 +76,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/betafavicon.ico"
   },
   {
-    "revision": "7bf38a11e7e47128dbe6",
-    "url": "/chemSims/betagen.main.ae5f63b3b51e91c05d58.bundle.js"
+    "revision": "af22437333853a479bc0",
+    "url": "/chemSims/betagen.main.f576455156d4cf2ea63b.bundle.js"
   },
   {
     "revision": "2ddc4297b371746c1723",
     "url": "/chemSims/betagen.vendors.2b68759d0573537ed4be.bundle.js"
   },
   {
-    "revision": "0508428129e87beafd30791ef69b58b9",
+    "revision": "025333d40d4cb75678cc71ac06c945f6",
     "url": "/chemSims/betaindex.html"
   },
   {
@@ -92,7 +92,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/chemSims/betamanifest.json"
   },
   {
-    "revision": "701445d8817f73e3da17e450b69faa36",
+    "revision": "a8029749c7edd38204cf67287cb14139",
     "url": "/chemSims/betasw.js"
   }
 ]);

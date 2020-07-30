@@ -1,4 +1,4 @@
-importScripts("/chemSims/betaprecache-manifest.7897366500d06292194884decac55f1d.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/chemSims/betaprecache-manifest.9ff320543e7162712275433e23f19198.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 /**
  * You should only modify this, if you know what you are doing.
