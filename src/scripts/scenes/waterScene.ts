@@ -54,7 +54,8 @@ export default class WaterScene extends BaseScene {
 
     this.nextSceneButton = new InteractiveButton(this, buttonX, 500, 'MOVE TO NEXT STEP', '#000').on('pointerup', () => {
       this.nextSceneButton.buttonHover();
-      this.scene.start('WeighScene',{glasstype: this.glasstype, waterAmount: this.glassware.waterAmount});
+      this.scene.wake('WeighScene',{glasstype: this.glasstype, waterAmount: this.glassware.waterAmount});
+      this.scene.stop();
     });
 
 
@@ -88,12 +89,6 @@ export default class WaterScene extends BaseScene {
     //this.testtext.setText('WATER: ' + this.glassware.waterAmount);
   }
 
-  checkEnd(){
-    if(this.glassware.waterAmount == this.glassware.target){  //maybe a submit button instead? or a text promp to move on 
-      this.scene.stop(); 
-      this.scene.wake('WeighScene',{glasstype: this.glasstype, waterAmount: this.glassware.waterAmount});
-    }
-  }
 
 
 }
