@@ -4,11 +4,12 @@ export default abstract class Glassware extends Phaser.GameObjects.Sprite {
     glasstype: string;
     description: string;
 
-    target: number;
+    target: number; //should vary
     max: number;
-    weight: number;
-    waterAmount: number = 0;
-    waterImage: GameObjects.Sprite;
+    weight: number; //starting weight in g of glass without any water in it
+    waterAmount: number = 0;    //how much water in ml (weight of water in g)
+    waterImage: GameObjects.Sprite; 
+    percentVariation: number; //how much scale should vary based on the type of glass and waterAmount 
     
     graphics: GameObjects.Graphics;
     mask: Phaser.Display.Masks.GeometryMask;

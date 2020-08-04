@@ -12,6 +12,7 @@ export default class Beaker extends Glassware{
         this.max = 800;
         this.target = 400;
         this.weight = 100;
+        this.percentVariation = .1;
     }
     
     addWater(){

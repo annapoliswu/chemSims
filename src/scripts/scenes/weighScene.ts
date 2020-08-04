@@ -49,7 +49,6 @@ export default class WeighScene extends BaseScene {
         this.waterAmountStart = data.waterAmount;
     }
 
-
     create() {
         super.create();
         let x = 3 * this.WIDTH / 4;
@@ -58,8 +57,12 @@ export default class WeighScene extends BaseScene {
         this.add.rectangle(this.WIDTH / 2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99); //table
         this.chemScale = this.add.image(this.WIDTH / 3.5, this.HEIGHT - 160, 'scale');
 
-        this.randomInitial = Math.random();
-        this.randomFinal = Math.random();
+        this.randomInitial = Math.random() + .5;
+        this.randomFinal = Math.random() + .5;
+        if (Math.random() > .5){
+            this.randomInitial = this.randomInitial * -1;
+            this.randomFinal = this.randomFinal * -1;
+        }
 
         this.waterTable = this.add.image(400, 350, 'waterTable').setScale(.7).setDepth(99);
         this.waterTable.alpha = 0;
@@ -79,7 +82,7 @@ export default class WeighScene extends BaseScene {
         });
 
         this.setTempDensity();
-        this.iWeightScale = this.toDecimalPlace((this.glassware.weight + this.randomInitial * 10), 2);
+        this.iWeightScale = this.toDecimalPlace((this.glassware.weight + (this.randomInitial * this.glassware.weight * this.glassware.percentVariation/2) ), 2);
 
 
         //---------------------------------EXTRA SCENE TEXT-----------------------------------
@@ -124,7 +127,7 @@ export default class WeighScene extends BaseScene {
         this.iWeightInput.addOnClick(() => {
             if (this.iWeightInput.value == this.iWeightScale) {
 
-                this.iWeightInput.showNormal("Initial Weight: " + this.iWeightInput.value + " g");
+                this.iWeightInput.showNormal("Initial Weight: " + this.iWeightInput.value.toFixed(2) + " g");
                 this.iWeight = this.iWeightInput.value;
                 this.iWeightInput.hideInput();
 
@@ -139,7 +142,7 @@ export default class WeighScene extends BaseScene {
         this.fWeightInput = new InputLine(this, inputX, inputY + 50, "Final Weight: ?", "Enter final weight");
         this.fWeightInput.addOnClick(() => {
             if (this.fWeightInput.value == this.fWeightScale) {
-                this.fWeightInput.showNormal("Final Weight: " + this.fWeightInput.value + " g");
+                this.fWeightInput.showNormal("Final Weight: " + this.fWeightInput.value.toFixed(2) + " g");
                 this.fWeightInput.hideInput();
             } else {
                 this.fWeightInput.showWarning(this.checkScaleWarning);
@@ -172,18 +175,22 @@ export default class WeighScene extends BaseScene {
 
         this.volumeInput = new InputLine(this, inputX, inputY + 225, "Calculate Volume of Water", "Enter water volume");
         this.volumeInput.addOnClick(() => {
+            alert(this.volume);
             let inputVol = this.toDecimalPlace(this.volumeInput.value, 2);
+            let percentOff = this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 1);
             switch (inputVol) {
                 case this.volume:
                     this.volumeInput.showNormal("Volume: " + this.volume + " ml");
                     if (this.glassware.waterAmount == this.glassware.target) {
-                        this.calcText.setText("CONGRATULATIONS!!\nYou've calculated the volume correctly!" +
-                            "\nYou're about " + Math.abs(this.glassware.target - this.volume).toFixed(2) + " ml off from the target of " + this.glassware.target + " ml.");
+                        this.calcText.setText("CONGRATULATIONS!!\nYou've calculated the volume correctly and hit the target!" +
+                            "\nYou're about " + Math.abs(this.glassware.target - this.volume).toFixed(2) + " ml (" + percentOff + "%) off from the target of " + this.glassware.target + " ml.");
                         this.tryAnotherButton.changeColor('#3330AA');
                     } else if (this.glassware.waterAmount < this.glassware.target) {
-                        this.calcText.setText("You've calculated the volume correctly! But you're a bit short of the target volume of " + this.glassware.target + " ml.");
+                        this.calcText.setText("You've calculated the volume correctly, but you're too short the target!"  +
+                            "\nYou're about " + Math.abs(this.glassware.target - this.volume).toFixed(2) + " ml (" + percentOff + "%) off from the target of " + this.glassware.target + " ml.");
                     } else if (this.glassware.waterAmount > this.glassware.target) {
-                        this.calcText.setText("You've calculated the volume correctly! But you overshot the target volume of " + this.glassware.target + " ml.");
+                        this.calcText.setText("You've calculated the volume correctly, but you overshot the target!"  +
+                            "\nYou're about " + Math.abs(this.glassware.target - this.volume).toFixed(2) + " ml (" + percentOff + "%) off from the target of " + this.glassware.target + " ml.");
                     }
                     this.volumeInput.hideInput();
                     this.tryAgainButton.changeColor('#3330AA');
@@ -212,7 +219,7 @@ export default class WeighScene extends BaseScene {
             this.scene.restart();
         });
 
-        this.tryAnotherButton = new InteractiveButton(this, inputX - 25, inputY + 550, "TRY ANOTHER GLASS", "#444");
+        this.tryAnotherButton = new InteractiveButton(this, inputX - 25, inputY + 550, "TRY ANOTHER GLASSWARE TYPE", "#444");
         this.tryAnotherButton.on('pointerup', () => {
             this.scene.start('SelectionScene');
         });
@@ -231,7 +238,7 @@ export default class WeighScene extends BaseScene {
 
         this.waterAmountStart = data.waterAmount;
         this.glassware.setWater(this.waterAmountStart);
-        this.fWeightScale = this.toDecimalPlace(((this.iWeightScale + this.waterAmountStart) + (this.randomFinal * 10)), 2);
+        this.fWeightScale = this.toDecimalPlace(((this.iWeightScale + this.waterAmountStart) + (this.randomFinal * (this.iWeightScale + this.waterAmountStart) * this.glassware.percentVariation/2)), 2);
         this.scaleText.setText(this.fWeightScale.toFixed(2) + " g");
 
         this.mass = this.fWeightScale - this.iWeightScale;
