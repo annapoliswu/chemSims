@@ -1,22 +1,25 @@
 import { GameObjects } from "phaser";
 import Glassware from "./glassware";
 
-export default class Beaker extends Glassware{
+export default class Beaker2 extends Glassware{
 
     
     constructor(scene: Phaser.Scene, x: number, y: number) {
-        super(scene, x, y, 'beaker');
+        super(scene, x, y, 'beaker800ml');
         this.glasstype = 'beaker';
         this.description = 'A beaker is a cylinder with a lip and a spout. A beaker is usually about the same width as its height... etc';
         
-        this.max = 50;
-        this.target = Math.floor(Math.random() * 4) * 10 + 10;
-        this.weight = 50;
+        this.max = 800;
+        this.target = Math.floor(Math.random() * 8) * 100 + 100;
+        this.weight = 100;
         this.percentVariation = .1;
 
-        let w = this.waterImage.width*3;
-        let h = this.waterImage.height + 15;
-        this.addMask(scene, x+15, y, w, h);
+        
+        let w = this.waterImage.width*2;
+        let h = this.waterImage.height;
+        this.addMask(scene, x, y, w, h);
+
+
     }
     
     addWater(){
@@ -37,7 +40,7 @@ export default class Beaker extends Glassware{
 
     //updates height of mask 
     updateMask(){
-        this.maskShape.y = this.maskHeightStart -  (this.waterAmount * (this.waterImage.height-75)/this.max);
+        this.maskShape.y = this.maskHeightStart -  (this.waterAmount * (this.waterImage.height-115)/this.max);
     }
 
     setWater(amountOfWater:number){

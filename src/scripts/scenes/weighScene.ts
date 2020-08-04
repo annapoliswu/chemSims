@@ -67,7 +67,7 @@ export default class WeighScene extends BaseScene {
         this.waterTable = this.add.image(400, 350, 'waterTable').setScale(.7).setDepth(99);
         this.waterTable.alpha = 0;
 
-        this.createGlassware(this.WIDTH / 3.5, 240, this.waterAmountStart);
+        this.createGlassware(this.WIDTH / 3.5, 270, this.waterAmountStart);
         this.glassware.on('pointerover', () => {
             this.glassware.alpha = .2;
         }).on('pointerout', () => {
@@ -78,7 +78,7 @@ export default class WeighScene extends BaseScene {
             this.glassware.alpha = 1;
             this.glassware.setTintFill(0xCCC);
             this.scene.sleep();
-            this.scene.run('WaterScene', { glasstype: this.glasstype });
+            this.scene.run('WaterScene', { glasstype: this.glasstype, waterTarget: this.glassware.target });
         });
 
         this.setTempDensity();
@@ -238,6 +238,7 @@ export default class WeighScene extends BaseScene {
 
         this.waterAmountStart = data.waterAmount;
         this.glassware.setWater(this.waterAmountStart);
+        this.glassware.target = data.waterTarget;
         this.fWeightScale = this.toDecimalPlace(((this.iWeightScale + this.waterAmountStart) + (this.randomFinal * (this.iWeightScale + this.waterAmountStart) * this.glassware.percentVariation/2)), 2);
         this.scaleText.setText(this.fWeightScale.toFixed(2) + " g");
 

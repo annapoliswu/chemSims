@@ -9,7 +9,6 @@ import Beaker from '../objects/Beaker';
 export default class WaterScene extends BaseScene {
 
   private exampleObject: ExampleObject;
-  glasswareGroup;
 
   addButton: InteractiveButton;
   subtractButton: InteractiveButton;
@@ -20,6 +19,8 @@ export default class WaterScene extends BaseScene {
   graphics;
   waterImage;
   mask;
+  waterTarget;
+  
 
 
   constructor() {
@@ -28,6 +29,7 @@ export default class WaterScene extends BaseScene {
 
   init(data) {
     this.glasstype = data.glasstype;
+    this.waterTarget = data.waterTarget;
   }
 
   create() {
@@ -38,6 +40,7 @@ export default class WaterScene extends BaseScene {
     let glassX = 4 * this.WIDTH / 7;
     let glassY = this.HEIGHT / 2 + 50;
     this.createGlassware(glassX, glassY);
+    this.glassware.target = this.waterTarget;
 
 
     //buttons
@@ -54,7 +57,7 @@ export default class WaterScene extends BaseScene {
 
     this.nextSceneButton = new InteractiveButton(this, buttonX, 500, 'MOVE TO NEXT STEP', '#000').on('pointerup', () => {
       this.nextSceneButton.buttonHover();
-      this.scene.wake('WeighScene',{glasstype: this.glasstype, waterAmount: this.glassware.waterAmount});
+      this.scene.wake('WeighScene',{glasstype: this.glasstype, waterAmount: this.glassware.waterAmount, waterTarget: this.glassware.target});
       this.scene.stop();
     });
 
@@ -77,7 +80,7 @@ export default class WaterScene extends BaseScene {
       });
 
     //for debug      
-    //this.testtext = this.add.text(buttonX, 500, 'WATER: ' + this.glassware.waterAmount, { color: '#000', backgroundColor: '#999999', padding: 20 });
+    this.testtext = this.add.text(buttonX, 700, 'Testing...\nWATER: ' + this.glassware.waterAmount, { color: '#000', backgroundColor: '#999999', padding: 20 });
     //this.add.text(buttonX, 600, 'GLASSTYPE: ' + this.glasstype, { color: '#000', backgroundColor: '#999999', padding: 20 });
 
 
@@ -86,7 +89,7 @@ export default class WaterScene extends BaseScene {
 
 
   update() {
-    //this.testtext.setText('WATER: ' + this.glassware.waterAmount);
+    this.testtext.setText('WATER: ' + this.glassware.waterAmount);
   }
 
 
