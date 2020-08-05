@@ -39,7 +39,7 @@ export default class WeighScene extends BaseScene {
     waterTable: Phaser.GameObjects.Image;
     tryAnotherButton: InteractiveButton;
     tryAgainButton: InteractiveButton;
-
+    timer: number = 0;
     constructor() {
         super('WeighScene');
     }
@@ -57,13 +57,13 @@ export default class WeighScene extends BaseScene {
         this.add.rectangle(this.WIDTH / 2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99); //table
         this.chemScale = this.add.image(this.WIDTH / 3.5, this.HEIGHT - 160, 'scale');
 
-        this.randomInitial = Math.random() + .5;
-        this.randomFinal = Math.random() + .5;
+        this.randomInitial = Math.random()*3;
+        this.randomFinal = Math.random();
         if (Math.random() > .5){
             this.randomInitial = this.randomInitial * -1;
             this.randomFinal = this.randomFinal * -1;
         }
-
+        
         this.waterTable = this.add.image(400, 350, 'waterTable').setScale(.7).setDepth(99);
         this.waterTable.alpha = 0;
 
@@ -82,7 +82,7 @@ export default class WeighScene extends BaseScene {
         });
 
         this.setTempDensity();
-        this.iWeightScale = this.toDecimalPlace((this.glassware.weight + (this.randomInitial * this.glassware.weight * this.glassware.percentVariation/2) ), 2);
+        this.iWeightScale = this.toDecimalPlace(this.glassware.weight + this.randomInitial, 2);
 
 
         //---------------------------------EXTRA SCENE TEXT-----------------------------------
@@ -94,7 +94,7 @@ export default class WeighScene extends BaseScene {
             strokeThickness: 3
         });
 
-        this.clickText = this.add.text(550, 150, "", {
+        this.clickText = this.add.text(this.glassware.x + this.glassware.width/2, 150, "", {
             fontFamily: 'Arial',
             fontSize: '36px',
             color: '#DD00DD',
@@ -175,7 +175,7 @@ export default class WeighScene extends BaseScene {
 
         this.volumeInput = new InputLine(this, inputX, inputY + 225, "Calculate Volume of Water", "Enter water volume");
         this.volumeInput.addOnClick(() => {
-            alert(this.volume);
+
             let inputVol = this.toDecimalPlace(this.volumeInput.value, 2);
             let percentOff = this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 1);
             switch (inputVol) {
@@ -231,6 +231,10 @@ export default class WeighScene extends BaseScene {
 
         this.events.on('wake', this.onWake, this);
 
+        //debug
+        setInterval( ()=>{
+            console.log({iWeight: this.iWeight, fWeight: this.fWeightInput, density: this.density, volume: this.volume, percent: this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 1)});
+        }, 3000 );
     }
 
     onWake(sys, data){
@@ -239,7 +243,7 @@ export default class WeighScene extends BaseScene {
         this.waterAmountStart = data.waterAmount;
         this.glassware.setWater(this.waterAmountStart);
         this.glassware.target = data.waterTarget;
-        this.fWeightScale = this.toDecimalPlace(((this.iWeightScale + this.waterAmountStart) + (this.randomFinal * (this.iWeightScale + this.waterAmountStart) * this.glassware.percentVariation/2)), 2);
+        this.fWeightScale = this.toDecimalPlace( this.iWeightScale + (this.waterAmountStart * (1+ this.randomFinal * this.glassware.percentVariation)), 2);
         this.scaleText.setText(this.fWeightScale.toFixed(2) + " g");
 
         this.mass = this.fWeightScale - this.iWeightScale;
@@ -268,6 +272,7 @@ export default class WeighScene extends BaseScene {
     update() {
         //this.clickText.setText("val: " + this.iWeightInput.value);
         //this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
+
     }
 
     //there's probably a formula for this table, using this until i find it

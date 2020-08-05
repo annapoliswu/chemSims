@@ -23,6 +23,7 @@ export default abstract class Glassware extends Phaser.GameObjects.Sprite {
         this.graphics = scene.add.graphics();
         
         this.waterImage = new GameObjects.Sprite(scene, x,y, typeinput+'Fill');
+
     }
 
     abstract addWater();
@@ -45,7 +46,8 @@ export default abstract class Glassware extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
     }
 
-    
+    /*note: moving and scaling this class is a pain. 
+    graphics class origin is always 0,0 can't be set and the graphics/sprites/images can't be grouped*/
 
 }
 

@@ -37,14 +37,15 @@ export default class WaterScene extends BaseScene {
 
     this.add.rectangle(this.WIDTH / 2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99);
 
-    let glassX = 4 * this.WIDTH / 7;
+    let glassX = this.WIDTH / 2;
     let glassY = this.HEIGHT / 2 + 50;
     this.createGlassware(glassX, glassY);
+
     this.glassware.target = this.waterTarget;
 
 
     //buttons
-    let buttonX = 3 * this.WIDTH / 4;
+    let buttonX = glassX + 50 + this.glassware.width/2;
     this.addButton = new InteractiveButton(this, buttonX, 300, 'ADD WATER', '#444').on('pointerup', () => {
       this.addButton.buttonHover();
       this.glassware.addWater();
@@ -82,7 +83,6 @@ export default class WaterScene extends BaseScene {
     //for debug      
     this.testtext = this.add.text(buttonX, 700, 'Testing...\nWATER: ' + this.glassware.waterAmount, { color: '#000', backgroundColor: '#999999', padding: 20 });
     //this.add.text(buttonX, 600, 'GLASSTYPE: ' + this.glasstype, { color: '#000', backgroundColor: '#999999', padding: 20 });
-
 
   }
 

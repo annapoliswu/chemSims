@@ -1,6 +1,7 @@
 import Glassware from "../objects/glassware";
-import InteractiveButton from "../objects/interactiveButton";
+import GraduatedCylinder from "./../objects/graduatedCylinder";
 import Beaker from '../objects/Beaker';
+import InteractiveButton from "../objects/interactiveButton";
 
 export default class BaseScene extends Phaser.Scene {
 
@@ -23,8 +24,13 @@ export default class BaseScene extends Phaser.Scene {
         switch (this.glasstype) {
             case 'beaker':
                 this.glassware = new Beaker(this, x, y);
+                break;
+            case 'graduatedCylinder':
+                this.glassware = new GraduatedCylinder(this, x, y);
+                break;
             //others go here, note using same glass in other scenes need to send info on waterAmount
         }
+
         if(inputWater){
             this.glassware.setWater(inputWater);
         }

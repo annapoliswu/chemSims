@@ -10,6 +10,9 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('beaker','assets/beaker50ml.png');
     this.load.image('beakerFill','assets/beaker50ml_fill.png');
 
+    this.load.image('graduatedCylinder','assets/graduatedcylinder10ml.png');
+    this.load.image('graduatedCylinderFill','assets/graduatedcylinder10ml_fill.png');
+
     this.load.image('scale','assets/scale.png' );
     this.load.image('waterTable','assets/watertable.png' );
 
@@ -17,7 +20,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.html('inputLine', 'assets/inputLine.html');
   }
 
-  create() {
+  create() { 
     this.scene.start('SelectionScene');
     //this.scene.start('WaterScene');
     //this.scene.start('WeighScene');
