@@ -1,4 +1,3 @@
-import { GameObjects } from "phaser";
 import Glassware from "./glassware";
 
 export default class Beaker extends Glassware{
@@ -11,7 +10,7 @@ export default class Beaker extends Glassware{
         
         this.max = 50;
         this.target = Math.floor(Math.random() * 4) * 10 + 10;
-        this.weight = 50;
+        this.weight = 60;
         this.percentVariation = .1;
 
         let w = this.waterImage.width*3;

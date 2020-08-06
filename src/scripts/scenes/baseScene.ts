@@ -1,4 +1,5 @@
 import Glassware from "../objects/glassware";
+import VolumetricFlask from "./../objects/volumetricFlask";
 import GraduatedCylinder from "./../objects/graduatedCylinder";
 import Beaker from '../objects/Beaker';
 import InteractiveButton from "../objects/interactiveButton";
@@ -27,6 +28,9 @@ export default class BaseScene extends Phaser.Scene {
                 break;
             case 'graduatedCylinder':
                 this.glassware = new GraduatedCylinder(this, x, y);
+                break;
+            case 'volumetricFlask':
+                this.glassware = new VolumetricFlask(this, x, y);
                 break;
             //others go here, note using same glass in other scenes need to send info on waterAmount
         }

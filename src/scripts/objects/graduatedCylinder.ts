@@ -1,4 +1,3 @@
-import { GameObjects } from "phaser";
 import Glassware from "./glassware";
 
 export default class GraduatedCylinder extends Glassware{
@@ -11,7 +10,7 @@ export default class GraduatedCylinder extends Glassware{
         
         this.max = 10;
         this.target = Math.floor(Math.random() * 9)+ 1;
-        this.weight = 80;
+        this.weight = 40;
         this.percentVariation = .02;
 
         let w = this.waterImage.width*3;

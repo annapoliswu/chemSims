@@ -1,15 +1,10 @@
-import Glassware from "../objects/glassware";
-import GraduatedCylinder from "./../objects/graduatedCylinder";
 import ImageButton from "./../objects/imageButton";
 import BaseScene from "./baseScene";
 import InteractiveButton from "../objects/interactiveButton";
-import Beaker from '../objects/Beaker';
 
 export default class SelectionScene extends BaseScene{
 
     beakerButton;
-    beaker;
-    graduatedCylinder;
 
     constructor() {
         super('SelectionScene');
@@ -18,19 +13,17 @@ export default class SelectionScene extends BaseScene{
     create() {
         super.create();
 
-        this.beakerButton = new InteractiveButton(this, this.WIDTH / 2, 300, 'BEAKER', '#000').on('pointerup', () => {
-            this.beakerButton.buttonHover();
+        new ImageButton(this, this.WIDTH/4, 250,'beaker', 'beaker').onClick( () =>{
             this.scene.start('WeighScene', { glasstype: 'beaker' , waterAmount: 0});
         });
 
-        this.beaker = new ImageButton(this, 300, 200,'beaker', 'beaker').onClick( () =>{
-            this.scene.start('WeighScene', { glasstype: 'beaker' , waterAmount: 0});
-        });
-
-        this.graduatedCylinder = new ImageButton(this, 600, 200,'graduatedCylinder', 'graduated cylinder').onClick( () =>{
+        new ImageButton(this, 2*this.WIDTH/4, 200,'graduatedCylinder', 'graduated cylinder').onClick( () =>{
             this.scene.start('WeighScene', { glasstype: 'graduatedCylinder' , waterAmount: 0});
         });
 
+        new ImageButton(this, 3*this.WIDTH/4, 210,'volumetricFlask', 'volumetric flask').onClick( () =>{
+            this.scene.start('WeighScene', { glasstype: 'volumetricFlask' , waterAmount: 0});
+        });
     }
 
     update() {

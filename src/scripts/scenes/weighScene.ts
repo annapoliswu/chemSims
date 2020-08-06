@@ -78,6 +78,9 @@ export default class WeighScene extends BaseScene {
             case 'graduatedCylinder':
                 glassY = 210;
                 break;
+            case 'volumetricFlask':
+                glassY = 225;
+                break;
         }
         this.createGlassware(glassX, glassY, this.waterAmountStart);
         this.glassware.on('pointerover', () => {
@@ -185,6 +188,7 @@ export default class WeighScene extends BaseScene {
             }
         });
 
+         //------------------------------------VOLUME CHECKS-----------------------------------
         this.volumeInput = new InputLine(this, inputX, inputY + 225, "Calculate Volume of Water", "Enter water volume");
         this.volumeInput.addOnClick(() => {
 
@@ -243,11 +247,13 @@ export default class WeighScene extends BaseScene {
 
         this.events.on('wake', this.onWake, this);
 
-        //----------------------------------- debug ----------------------------------------
+        //---------------------------------------------- DEBUG ----------------------------------------------
         setInterval( ()=>{
-            console.log({iWeight: this.iWeight, fWeight: this.fWeightInput, density: this.density, volume: this.volume, percent: this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 2)});
-        }, 3000 );
+            console.log({iWeight: this.iWeight, density: this.density, volume: this.volume, percent: this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 2)});
+        }, 4000 );
     }
+
+
 
     onWake(sys, data){
         this.input.disable(this.glassware);
@@ -267,6 +273,12 @@ export default class WeighScene extends BaseScene {
         this.clickText.alpha = 0;
         //this.volumeInput.show();
     }
+
+    
+    update() {
+        //this.clickText.setText("val: " + this.iWeightInput.value);
+        //this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
+    }
     
     withinRange(num: number, lower: number, upper:number):boolean{
         if(num <= upper && num >= lower){
@@ -285,11 +297,6 @@ export default class WeighScene extends BaseScene {
         return Number(new Number(num).toPrecision(sigfig)).valueOf();
     }
 
-    update() {
-        //this.clickText.setText("val: " + this.iWeightInput.value);
-        //this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
-
-    }
 
     //if there's a formula for this, use that instead
     setTempDensity(){

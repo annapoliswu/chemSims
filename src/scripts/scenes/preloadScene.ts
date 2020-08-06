@@ -13,6 +13,9 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('graduatedCylinder','assets/graduatedcylinder10ml.png');
     this.load.image('graduatedCylinderFill','assets/graduatedcylinder10ml_fill.png');
 
+    this.load.image('volumetricFlask','assets/volumetricflask10ml.png');
+    this.load.image('volumetricFlaskFill','assets/volumetricflask10ml_fill.png');
+
     this.load.image('scale','assets/scale.png' );
     this.load.image('waterTable','assets/watertable.png' );
 
