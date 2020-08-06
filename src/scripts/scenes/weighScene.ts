@@ -40,6 +40,8 @@ export default class WeighScene extends BaseScene {
     tryAnotherButton: InteractiveButton;
     tryAgainButton: InteractiveButton;
     timer: number = 0;
+    sigFig = 4; //how many sig figs the final volume should be (based on lowest sig fig of of scale numbers and density)
+
     constructor() {
         super('WeighScene');
     }
@@ -67,7 +69,17 @@ export default class WeighScene extends BaseScene {
         this.waterTable = this.add.image(400, 350, 'waterTable').setScale(.7).setDepth(99);
         this.waterTable.alpha = 0;
 
-        this.createGlassware(this.WIDTH / 3.5, 270, this.waterAmountStart);
+        let glassX = this.WIDTH / 3.5;;
+        let glassY = 0;
+        switch (this.glasstype) {
+            case 'beaker':
+                glassY = 270;
+                break;
+            case 'graduatedCylinder':
+                glassY = 210;
+                break;
+        }
+        this.createGlassware(glassX, glassY, this.waterAmountStart);
         this.glassware.on('pointerover', () => {
             this.glassware.alpha = .2;
         }).on('pointerout', () => {
@@ -163,7 +175,7 @@ export default class WeighScene extends BaseScene {
             }
         });
 
-        this.waterTableButton = new InteractiveButton(this, inputX - 175, inputY + 180, "TEMP-DENSITY TABLE", "#444");
+        this.waterTableButton = new InteractiveButton(this, inputX-175, inputY + 180, "TEMP-DENSITY TABLE", "#444");
         this.waterTableButton.on('pointerup', () => {
             this.waterTableButton.buttonHover();
             if (this.waterTable.alpha == 0) {
@@ -176,50 +188,50 @@ export default class WeighScene extends BaseScene {
         this.volumeInput = new InputLine(this, inputX, inputY + 225, "Calculate Volume of Water", "Enter water volume");
         this.volumeInput.addOnClick(() => {
 
-            let inputVol = this.toDecimalPlace(this.volumeInput.value, 2);
-            let percentOff = this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 1);
-            switch (inputVol) {
-                case this.volume:
-                    this.volumeInput.showNormal("Volume: " + this.volume + " ml");
-                    if (this.glassware.waterAmount == this.glassware.target) {
-                        this.calcText.setText("CONGRATULATIONS!!\nYou've calculated the volume correctly and hit the target!" +
-                            "\nYou're about " + Math.abs(this.glassware.target - this.volume).toFixed(2) + " ml (" + percentOff + "%) off from the target of " + this.glassware.target + " ml.");
-                        this.tryAnotherButton.changeColor('#3330AA');
-                    } else if (this.glassware.waterAmount < this.glassware.target) {
-                        this.calcText.setText("You've calculated the volume correctly, but you're too short the target!"  +
-                            "\nYou're about " + Math.abs(this.glassware.target - this.volume).toFixed(2) + " ml (" + percentOff + "%) off from the target of " + this.glassware.target + " ml.");
-                    } else if (this.glassware.waterAmount > this.glassware.target) {
-                        this.calcText.setText("You've calculated the volume correctly, but you overshot the target!"  +
-                            "\nYou're about " + Math.abs(this.glassware.target - this.volume).toFixed(2) + " ml (" + percentOff + "%) off from the target of " + this.glassware.target + " ml.");
-                    }
-                    this.volumeInput.hideInput();
-                    this.tryAgainButton.changeColor('#3330AA');
-                    break;
-                case this.toDecimalPlace(this.fWeightScale / this.density, 2):
-                    this.calcText.setText("You may have used your final scale weight for mass. Remember that MASS is your FINAL WEIGHT - INITIAL WEIGHT.");
-                    this.volumeInput.showWarning("Calculate Volume of Water");
-                    break;
-                case this.toDecimalPlace(this.iWeightScale / this.density, 2):
-                    this.calcText.setText("You may have used your initial scale weight for mass. Remember that MASS is your FINAL WEIGHT - INITIAL WEIGHT.");
-                    this.volumeInput.showWarning("Calculate Volume of Water");
-                    break;
-                case this.toDecimalPlace(this.density / this.mass, 2):
-                    this.calcText.setText("You may have gotten the formula backwards. Consider:\nDENSITY = MASS/VOLUME\nVOLUME = MASS/DENSITY");
-                    this.volumeInput.showWarning("Calculate Volume of Water");
-                    break;
-                default:
-                    this.calcText.setText("Try using the formula:\nDENSITY = MASS/VOLUME\nto find the volume of water.")
-                    this.volumeInput.showWarning("Calculate Volume of Water");
-
+            let inputVol = this.volumeInput.value; //this.toDecimalPlace(this.volumeInput.value, 2);
+            let approxInputVol = this.toDecimalPlace(inputVol,1);
+            let sigFigInputVol = this.toSigFig(inputVol,this.sigFig);
+            let percentOff = this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 2);
+            let mlOff = this.toSigFig(Math.abs(this.glassware.target - this.volume), this.sigFig-1);
+            if (inputVol == this.volume) {
+                this.volumeInput.showNormal("Volume: " + this.volume + " ml");
+                if (this.glassware.waterAmount == this.glassware.target) {
+                    this.calcText.setText("CONGRATULATIONS!!\nYou've calculated the volume correctly and hit the target!" +
+                        "\nYou're about " + mlOff + " ml (" + percentOff + "%) off from the target of " + this.glassware.target + " ml.");
+                    this.tryAnotherButton.changeColor('#3330AA');
+                } else if (this.glassware.waterAmount < this.glassware.target) {
+                    this.calcText.setText("You've calculated the volume correctly, but you're too short the target!" +
+                        "\nYou're about " + mlOff + " ml (" + percentOff + "%) off from the target of " + this.glassware.target + " ml.");
+                } else if (this.glassware.waterAmount > this.glassware.target) {
+                    this.calcText.setText("You've calculated the volume correctly, but you overshot the target!" +
+                        "\nYou're about " + mlOff + " ml (" + percentOff + "%) off from the target of " + this.glassware.target + " ml.");
+                }
+                this.volumeInput.hideInput();
+                this.tryAgainButton.changeColor('#3330AA');
+            } else if (this.toDecimalPlace(inputVol,0) == this.toDecimalPlace(this.volume, 0)) {
+                this.calcText.setText("Your calculated volume doesn't match the correct number of significant figures. Since we are multiplying and dividing, use the LEAST number of sig figs from your calculation numbers.");
+                this.volumeInput.showWarning("Calculate Volume of Water to " + this.sigFig + " Sig Figs");
+            } else if (approxInputVol == this.toDecimalPlace(this.fWeightScale / this.density, 1)) {
+                this.calcText.setText("You may have used your final scale weight for mass. Remember that MASS is your FINAL WEIGHT - INITIAL WEIGHT.");
+                this.volumeInput.showWarning("Calculate Volume of Water");
+            } else if (approxInputVol == this.toDecimalPlace(this.iWeightScale / this.density, 1)) {
+                this.calcText.setText("You may have used your initial scale weight for mass. Remember that MASS is your FINAL WEIGHT - INITIAL WEIGHT.");
+                this.volumeInput.showWarning("Calculate Volume of Water");
+            } else if (approxInputVol == this.toDecimalPlace(this.density / this.mass, 1)) {
+                this.calcText.setText("You may have gotten the formula backwards. Consider:\nDENSITY = MASS/VOLUME\nVOLUME = MASS/DENSITY");
+                this.volumeInput.showWarning("Calculate Volume of Water");
+            } else {
+                this.calcText.setText("Try using the formula:\nDENSITY = MASS/VOLUME\nto find the volume of water.")
+                this.volumeInput.showWarning("Calculate Volume of Water");
             }
         });
 
-        this.tryAgainButton = new InteractiveButton(this, inputX - 175, inputY + 550, "START OVER", "#444");
+        this.tryAgainButton = new InteractiveButton(this, inputX - 175, inputY + 550, "RESTART", "#444");
         this.tryAgainButton.on('pointerup', () => {
             this.scene.restart();
         });
 
-        this.tryAnotherButton = new InteractiveButton(this, inputX - 25, inputY + 550, "TRY ANOTHER GLASSWARE TYPE", "#444");
+        this.tryAnotherButton = new InteractiveButton(this, inputX - 50, inputY + 550, "TRY ANOTHER GLASSWARE TYPE", "#444");
         this.tryAnotherButton.on('pointerup', () => {
             this.scene.start('SelectionScene');
         });
@@ -231,9 +243,9 @@ export default class WeighScene extends BaseScene {
 
         this.events.on('wake', this.onWake, this);
 
-        //debug
+        //----------------------------------- debug ----------------------------------------
         setInterval( ()=>{
-            console.log({iWeight: this.iWeight, fWeight: this.fWeightInput, density: this.density, volume: this.volume, percent: this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 1)});
+            console.log({iWeight: this.iWeight, fWeight: this.fWeightInput, density: this.density, volume: this.volume, percent: this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 2)});
         }, 3000 );
     }
 
@@ -247,7 +259,7 @@ export default class WeighScene extends BaseScene {
         this.scaleText.setText(this.fWeightScale.toFixed(2) + " g");
 
         this.mass = this.fWeightScale - this.iWeightScale;
-        this.volume = this.toDecimalPlace((this.mass/this.density), 2);
+        this.volume = this.toSigFig(this.mass/this.density, this.sigFig) //this.toDecimalPlace((this.mass/this.density), 2);
 
         this.fWeightInput.show();
         this.densityInput.show();
@@ -269,13 +281,17 @@ export default class WeighScene extends BaseScene {
         return (Math.round(num * Math.pow(10,place)) / Math.pow(10,place) );
     }
 
+    toSigFig(num: number, sigfig: number):number{
+        return Number(new Number(num).toPrecision(sigfig)).valueOf();
+    }
+
     update() {
         //this.clickText.setText("val: " + this.iWeightInput.value);
         //this.iWeightInput.setLabel("Initial Weight: " + this.iWeightInput.value + " g");
 
     }
 
-    //there's probably a formula for this table, using this until i find it
+    //if there's a formula for this, use that instead
     setTempDensity(){
         let r = Math.floor(Math.random()*5);
         switch(r){

@@ -48,6 +48,12 @@ export default abstract class Glassware extends Phaser.GameObjects.Sprite {
 
     /*note: moving and scaling this class is a pain. 
     graphics class origin is always 0,0 can't be set and the graphics/sprites/images can't be grouped*/
+    movePosition(x:number, y:number){
+        this.setPosition(this.x+x,this.y+y);
+        this.waterImage.setPosition(this.waterImage.x+x,this.waterImage.y+y);
+        this.maskShape.x += x;
+        this.maskShape.y += y;
+    }
 
 }
 
