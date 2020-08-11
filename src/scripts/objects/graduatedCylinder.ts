@@ -10,7 +10,7 @@ export default class GraduatedCylinder extends Glassware{
         
         this.max = 10;
         this.target = Math.floor(Math.random() * 9)+ 1;
-        this.weight = 40;
+        this.weight = 50;
         this.percentVariation = .02;
 
         let w = this.waterImage.width*3;

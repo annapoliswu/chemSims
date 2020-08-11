@@ -1,14 +1,19 @@
 
 export default class ImageButton{
-    glass;
-    text;
+    glass: Phaser.GameObjects.Image;
+    text: Phaser.GameObjects.Text;
+    rect: Phaser.GameObjects.Rectangle;
+    bgColor:number = 0x2badf1;
 
     constructor(scene: Phaser.Scene, x: number, y: number, imageName: string, text: string) {
-        this.glass = scene.add.image(x, y, imageName).setTintFill(0xFFFFFF).setOrigin(.5,0);
+        this.glass = scene.add.image(x, y, imageName).setTintFill(0x000).setDepth(99).setOrigin(.5,0);
         
         this.text = scene.add.text(x, y-this.glass.height*.05, text.toUpperCase(), 
-        { backgroundColor: '#444', color: '#FFF', fontStyle: 'bold', fontSize: 32, align: 'center', fixedWidth: this.glass.width*1.2, wordWrap: {width: this.glass.width}, padding:{top:this.glass.height*1.1, bottom:this.glass.height*.05}}).setDepth(-99).setOrigin(.5,0);
-        //#3330AA
+        { color: '#000', fontStyle: 'bold', fontSize: 32, align: 'center', fixedWidth: this.glass.width*1.2, wordWrap: {width: this.glass.width}, padding:{top:this.glass.height*1.1, bottom:this.glass.height*.05}}).setDepth(99).setOrigin(.5,0);
+        this.rect = scene.add.rectangle(x, y-this.glass.height*.05, this.glass.width*1.25, this.glass.height*1.25).setDepth(-99).setOrigin(.5,0);
+        this.rect.setStrokeStyle(2, 0x000, 1);
+        this.rect.setFillStyle(this.bgColor, .2);
+
         this.text.on('pointerover', () => {this.buttonHover()})
             .on('pointerout', () => {this.buttonRest()})
             .on('pointerdown', () => {this.buttonDown()});
@@ -19,18 +24,14 @@ export default class ImageButton{
     
 
     buttonHover(){
-        //this.glass.alpha = .5;
-        //this.text.alpha = .5;
-        this.text.setStyle({backgroundColor:'#3330AA'});
+        this.rect.setFillStyle(this.bgColor, 1);
     }
     buttonRest(){
         this.glass.alpha = 1;
-        this.text.alpha = 1;
-        this.text.setStyle({backgroundColor:'#444'});
+        this.rect.setFillStyle(this.bgColor, .2);
     }
     buttonDown(){
         this.glass.alpha = 1;
-        this.text.alpha = 1;
     }
 
     onClick(someFunction: () => void) {
@@ -40,6 +41,7 @@ export default class ImageButton{
     setScale(scale: number){
         this.glass.setScale(scale);
         this.text.setScale(scale);
+        this.rect.scale = scale;
     }
 
 }

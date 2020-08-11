@@ -13,7 +13,9 @@ export default class SelectionScene extends BaseScene{
     create() {
         super.create();
 
-        new ImageButton(this, this.WIDTH/4, 250,'beaker', 'beaker').onClick( () =>{
+        this.add.rectangle(this.WIDTH / 2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99);
+
+        new ImageButton(this, this.WIDTH/4, 290,'beaker', 'beaker').onClick( () =>{
             this.scene.start('WeighScene', { glasstype: 'beaker' , waterAmount: 0});
         });
 
@@ -21,7 +23,7 @@ export default class SelectionScene extends BaseScene{
             this.scene.start('WeighScene', { glasstype: 'graduatedCylinder' , waterAmount: 0});
         });
 
-        new ImageButton(this, 3*this.WIDTH/4, 210,'volumetricFlask', 'volumetric flask').onClick( () =>{
+        new ImageButton(this, 3*this.WIDTH/4, 230,'volumetricFlask', 'volumetric flask').onClick( () =>{
             this.scene.start('WeighScene', { glasstype: 'volumetricFlask' , waterAmount: 0});
         });
     }
