@@ -23,7 +23,7 @@ export default class WeighScene extends BaseScene {
     calcText: Phaser.GameObjects.Text;
 
     clickText: Phaser.GameObjects.Text;
-    clickGlassWarning: string = "CLICK GLASS TO ADD WATER";
+    clickGlassWarning: string = "CLICK GLASS TO MOVE ON";
     checkScaleWarning: string = "Check the scale again";
     enterWeightWarning: string = "Please enter a weight";
 
@@ -133,7 +133,7 @@ export default class WeighScene extends BaseScene {
 
 
         //-------------------------------INPUTS and BUTTONS-----------------------------------
-        let inputX = x - 20;
+        let inputX = x - 40;
         let inputY = 100;
 
         this.iWeightInput = new InputLine(this, inputX, inputY, "Initial Weight", "Enter initial weight");
@@ -142,7 +142,7 @@ export default class WeighScene extends BaseScene {
         this.iWeightInput.addOnClick(() => {
             if (this.iWeightInput.value == this.iWeightScale) {
 
-                this.iWeightInput.showNormal("Initial Weight: " + this.iWeightInput.value.toFixed(2) + " g");
+                this.iWeightInput.showCorrect("Initial Weight: " + this.iWeightInput.value.toFixed(2) + " g");
                 this.iWeight = this.iWeightInput.value;
                 this.iWeightInput.hideInput();
 
@@ -157,7 +157,7 @@ export default class WeighScene extends BaseScene {
         this.fWeightInput = new InputLine(this, inputX, inputY + 50, "Final Weight: ?", "Enter final weight");
         this.fWeightInput.addOnClick(() => {
             if (this.fWeightInput.value == this.fWeightScale) {
-                this.fWeightInput.showNormal("Final Weight: " + this.fWeightInput.value.toFixed(2) + " g");
+                this.fWeightInput.showCorrect("Final Weight: " + this.fWeightInput.value.toFixed(2) + " g");
                 this.fWeightInput.hideInput();
             } else {
                 this.fWeightInput.showWarning(this.checkScaleWarning);
@@ -167,7 +167,7 @@ export default class WeighScene extends BaseScene {
         this.densityInput = new InputLine(this, inputX, inputY + 130, "Temp: " + this.temp + " °C,  " + "Density: ?", "Enter water density");
         this.densityInput.addOnClick(() => {
             if (this.densityInput.value == this.density) {
-                this.densityInput.showNormal("Temp: " + this.temp + " °C,  " + "Density: " + this.density + " g/ml");
+                this.densityInput.showCorrect("Temp: " + this.temp + " °C,  " + "Density: " + this.density + " g/ml");
                 this.densityInput.hideInput();
 
                 this.volumeInput.show();
@@ -198,7 +198,7 @@ export default class WeighScene extends BaseScene {
             let percentOff = this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 2);
             let mlOff = this.toSigFig(Math.abs(this.glassware.target - this.volume), this.sigFig-1);
             if (inputVol == this.volume) {
-                this.volumeInput.showNormal("Volume: " + this.volume + " ml");
+                this.volumeInput.showCorrect("Volume: " + this.volume + " ml");
                 if (this.glassware.waterAmount == this.glassware.target) {
                     this.calcText.setText("CONGRATULATIONS!!\nYou've calculated the volume correctly and hit the target!" +
                         "\nYou're about " + mlOff + " ml (" + percentOff + "%) off from the target of " + this.glassware.target + " ml.");
@@ -230,12 +230,12 @@ export default class WeighScene extends BaseScene {
             }
         });
 
-        this.tryAgainButton = new InteractiveButton(this, inputX - 175, inputY + 550, "RESTART", "#444");
+        this.tryAgainButton = new InteractiveButton(this, inputX - 175, inputY + 550, "START OVER", "#444");
         this.tryAgainButton.on('pointerup', () => {
             this.scene.restart();
         });
 
-        this.tryAnotherButton = new InteractiveButton(this, inputX - 50, inputY + 550, "TRY ANOTHER GLASSWARE TYPE", "#444");
+        this.tryAnotherButton = new InteractiveButton(this, inputX - 25, inputY + 550, "TRY A DIFFERENT GLASSWARE", "#444");
         this.tryAnotherButton.on('pointerup', () => {
             this.scene.start('SelectionScene');
         });

@@ -71,16 +71,16 @@ export default class InputLine{
     }
 
     showWarning(text : string){
-        this.input.style.color = "red";
-        this.input.style.borderColor = "red";
-        this.label.style.color = "red";
+        this.input.style.color = "#ff4f4f";
+        this.input.style.borderColor = "#ff4f4f";
+        this.label.style.color = "#ff4f4f";
         this.setLabel(text);
     }
 
     showCorrect(text : string){
-        this.input.style.color = "#b6ff7a";
-        this.input.style.borderColor = "#b6ff7a";
-        this.label.style.color = "#b6ff7a";
+        this.input.style.color = "#c0e892";
+        this.input.style.borderColor = "#c0e892";
+        this.label.style.color = "#c0e892";
         this.setLabel(text);
     }
 
