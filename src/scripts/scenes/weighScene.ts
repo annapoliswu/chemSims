@@ -25,6 +25,7 @@ export default class WeighScene extends BaseScene {
     clickText: Phaser.GameObjects.Text;
     clickGlassWarning: string = "CLICK GLASS TO MOVE ON";
     checkScaleWarning: string = "Check the scale again";
+    sigFigsWarning: string = "Please be mindful of your sig figs" 
     enterWeightWarning: string = "Please enter a weight";
 
     iWeightInput: InputLine;
@@ -140,8 +141,7 @@ export default class WeighScene extends BaseScene {
         this.iWeightInput.setLabel("Initial Weight: ?");
 
         this.iWeightInput.addOnClick(() => {
-            if (this.iWeightInput.value == this.iWeightScale) {
-
+            if ("" + this.iWeightInput.value === this.iWeightScale.toFixed(2)) {
                 this.iWeightInput.showCorrect("Initial Weight: " + this.iWeightInput.value.toFixed(2) + " g");
                 this.iWeight = this.iWeightInput.value;
                 this.iWeightInput.hideInput();
@@ -149,6 +149,8 @@ export default class WeighScene extends BaseScene {
                 this.clickText.setText(this.clickGlassWarning);
                 this.glassware.setTintFill(0xFF00FF);
                 this.glassware.setInteractive();
+            } else if (this.toDecimalPlace(this.iWeightInput.value, 0) == this.toDecimalPlace(this.iWeightScale, 0)) {
+                this.iWeightInput.showWarning(this.sigFigsWarning);
             } else {
                 this.iWeightInput.showWarning(this.checkScaleWarning);
             }
@@ -156,9 +158,11 @@ export default class WeighScene extends BaseScene {
 
         this.fWeightInput = new InputLine(this, inputX, inputY + 50, "Final Weight: ?", "Enter final weight");
         this.fWeightInput.addOnClick(() => {
-            if (this.fWeightInput.value == this.fWeightScale) {
+            if ("" + this.fWeightInput.value === this.fWeightScale.toFixed(2)) {
                 this.fWeightInput.showCorrect("Final Weight: " + this.fWeightInput.value.toFixed(2) + " g");
                 this.fWeightInput.hideInput();
+            } else if (this.toDecimalPlace(this.fWeightInput.value, 0) == this.toDecimalPlace(this.fWeightScale, 0)) {
+                this.fWeightInput.showWarning(this.sigFigsWarning);
             } else {
                 this.fWeightInput.showWarning(this.checkScaleWarning);
             }
@@ -194,7 +198,6 @@ export default class WeighScene extends BaseScene {
 
             let inputVol = this.volumeInput.value; //this.toDecimalPlace(this.volumeInput.value, 2);
             let approxInputVol = this.toDecimalPlace(inputVol,1);
-            let sigFigInputVol = this.toSigFig(inputVol,this.sigFig);
             let percentOff = this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 2);
             let mlOff = this.toSigFig(Math.abs(this.glassware.target - this.volume), this.sigFig-1);
             if (inputVol == this.volume) {
