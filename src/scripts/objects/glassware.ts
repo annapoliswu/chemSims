@@ -28,7 +28,7 @@ export default abstract class Glassware extends Phaser.GameObjects.Sprite {
 
     abstract addWater();
     abstract subtractWater();
-    abstract updateMask();
+    abstract updateMask();    //updates height of mask according to starting height and waterAmount
     abstract setWater(amountOfWater: number);
     
     addMask(scene: Phaser.Scene, x, y, w, h){

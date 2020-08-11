@@ -32,7 +32,6 @@ export default class GraduatedCylinder extends Glassware{
         }
     }
 
-    //updates height of mask 
     updateMask(){
         this.maskShape.y = this.maskHeightStart -  (this.waterAmount * (this.waterImage.height-180)/this.max);
     }

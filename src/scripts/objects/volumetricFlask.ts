@@ -32,9 +32,8 @@ export default class VolumetricFlask extends Glassware{
         }
     }
 
-    //updates height of mask 
     updateMask(){
-        this.maskShape.y = this.maskHeightStart -  (this.waterAmount * (this.waterImage.height-135)/this.max);
+        this.maskShape.y = this.maskHeightStart - 12*Math.pow(this.waterAmount,1.4);
     }
 
     setWater(amountOfWater:number){

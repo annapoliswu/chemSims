@@ -21,7 +21,6 @@ export default class Beaker extends Glassware{
     addWater(){
         if(this.waterAmount < this.max){
             this.waterAmount += this.max/20;
-            //this.maskShape.y -= (this.waterImage.height-115)/20;
             this.updateMask();
         }
     }
@@ -29,12 +28,10 @@ export default class Beaker extends Glassware{
     subtractWater(){
         if(this.waterAmount > 0){
             this.waterAmount -= this.max/20;
-            //this.maskShape.y += (this.waterImage.height-115)/20;
             this.updateMask();
         }
     }
 
-    //updates height of mask 
     updateMask(){
         this.maskShape.y = this.maskHeightStart -  (this.waterAmount * (this.waterImage.height-75)/this.max);
     }
