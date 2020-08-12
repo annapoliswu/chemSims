@@ -9,7 +9,7 @@ export default class ImageButton{
         this.glass = scene.add.image(x, y, imageName).setTintFill(0x000).setDepth(99).setOrigin(.5,0);
         
         this.text = scene.add.text(x, y-this.glass.height*.05, text.toUpperCase(), 
-        { color: '#000', fontStyle: 'bold', fontSize: 32, align: 'center', fixedWidth: this.glass.width*1.2, wordWrap: {width: this.glass.width}, padding:{top:this.glass.height*1.1, bottom:this.glass.height*.05}}).setDepth(99).setOrigin(.5,0);
+        { color: '#000', fontStyle: 'bold', fontSize: 24, fontFamily: 'Arial', align: 'center', fixedWidth: this.glass.width*1.2, wordWrap: {width: this.glass.width}, padding:{top:this.glass.height*1.1, bottom:this.glass.height*.05}}).setDepth(99).setOrigin(.5,0);
         this.rect = scene.add.rectangle(x, y-this.glass.height*.05, this.glass.width*1.25, this.glass.height*1.25).setDepth(-99).setOrigin(.5,0);
         this.rect.setStrokeStyle(2, 0x000, 1);
         this.rect.setFillStyle(this.bgColor, .2);

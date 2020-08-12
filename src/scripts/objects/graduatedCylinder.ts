@@ -6,7 +6,7 @@ export default class GraduatedCylinder extends Glassware{
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'graduatedCylinder');
         this.glasstype = 'graduatedCylinder';
-        this.description = 'A graduated cylinder ...';
+        this.description = 'GRADUATED CYLINDER\nA graduated cylinder ...';
         
         this.max = 10;
         this.target = Math.floor(Math.random() * 9)+ 1;

@@ -23,7 +23,6 @@ export default class WeighScene extends BaseScene {
     calcText: Phaser.GameObjects.Text;
 
     clickText: Phaser.GameObjects.Text;
-    clickGlassWarning: string = "CLICK GLASS TO MOVE ON";
     checkScaleWarning: string = "Check the scale again";
     sigFigsWarning: string = "Please be mindful of your sig figs" 
     enterWeightWarning: string = "Please enter a weight";
@@ -85,14 +84,14 @@ export default class WeighScene extends BaseScene {
         }
         this.createGlassware(glassX, glassY, this.waterAmountStart);
         this.glassware.on('pointerover', () => {
-            this.glassware.alpha = .2;
+            this.glassware.alpha = .3;
         }).on('pointerout', () => {
             this.glassware.alpha = 1;
         }).on('pointerdown', () => {
-            this.glassware.setTintFill(0xFF00FF);
+            this.glassware.setTintFill(0xCCC);
         }).on('pointerup', () => {
             this.glassware.alpha = 1;
-            this.glassware.setTintFill(0xCCC);
+            this.glassware.setTintFill(0x2badf1);
             this.scene.sleep();
             this.scene.run('WaterScene', { glasstype: this.glasstype, waterTarget: this.glassware.target });
         });
@@ -110,16 +109,16 @@ export default class WeighScene extends BaseScene {
             strokeThickness: 3
         });
 
-        this.clickText = this.add.text(this.glassware.x + this.glassware.width/2, 150, "", {
+        this.clickText = this.add.text(this.glassware.x - this.glassware.width/2, 160, "", {
             fontFamily: 'Arial',
             fontSize: '36px',
-            color: '#DD00DD',
-            align: 'left',
+            color: '#2badf1',
+            align: 'right',
             fontStyle: 'bold',
             wordWrap: {
-                width: 100
+                width: 180
             }
-        });
+        }).setOrigin(1,0);
 
         this.calcText = this.add.text(830, 380, "", {
             fontFamily: 'Arial',
@@ -141,15 +140,15 @@ export default class WeighScene extends BaseScene {
         this.iWeightInput.setLabel("Initial Weight: ?");
 
         this.iWeightInput.addOnClick(() => {
-            if ("" + this.iWeightInput.value === this.iWeightScale.toFixed(2)) {
+            if (this.iWeightInput.value == this.iWeightScale) {
                 this.iWeightInput.showCorrect("Initial Weight: " + this.iWeightInput.value.toFixed(2) + " g");
                 this.iWeight = this.iWeightInput.value;
                 this.iWeightInput.hideInput();
 
-                this.clickText.setText(this.clickGlassWarning);
-                this.glassware.setTintFill(0xFF00FF);
+                this.clickText.setText("CLICK GLASS TO MOVE ON ");
+                this.glassware.setTintFill(0x2badf1);
                 this.glassware.setInteractive();
-            } else if (this.toDecimalPlace(this.iWeightInput.value, 0) == this.toDecimalPlace(this.iWeightScale, 0)) {
+            } else if (this.toSigFig(this.iWeightInput.value,this.sigFig-1) == this.toSigFig(this.iWeightScale,this.sigFig-1)) {
                 this.iWeightInput.showWarning(this.sigFigsWarning);
             } else {
                 this.iWeightInput.showWarning(this.checkScaleWarning);
@@ -158,10 +157,10 @@ export default class WeighScene extends BaseScene {
 
         this.fWeightInput = new InputLine(this, inputX, inputY + 50, "Final Weight: ?", "Enter final weight");
         this.fWeightInput.addOnClick(() => {
-            if ("" + this.fWeightInput.value === this.fWeightScale.toFixed(2)) {
+            if (this.fWeightInput.value == this.fWeightScale) {
                 this.fWeightInput.showCorrect("Final Weight: " + this.fWeightInput.value.toFixed(2) + " g");
                 this.fWeightInput.hideInput();
-            } else if (this.toDecimalPlace(this.fWeightInput.value, 0) == this.toDecimalPlace(this.fWeightScale, 0)) {
+            } else if (this.toSigFig(this.fWeightInput.value,this.sigFig-1) == this.toSigFig(this.fWeightScale,this.sigFig-1)) {
                 this.fWeightInput.showWarning(this.sigFigsWarning);
             } else {
                 this.fWeightInput.showWarning(this.checkScaleWarning);
@@ -215,7 +214,7 @@ export default class WeighScene extends BaseScene {
                 }
                 this.volumeInput.hideInput();
                 this.tryAgainButton.changeColor('#3330AA');
-            } else if (this.toDecimalPlace(inputVol,0) == this.toDecimalPlace(this.volume, 0)) {
+            } else if ((this.toDecimalPlace(inputVol,0) == this.toDecimalPlace(this.volume, 0)) && (this.countDecimals(inputVol) != this.countDecimals(this.volume))) {
                 this.calcText.setText("Your calculated volume doesn't match the correct number of significant figures. Since we are multiplying and dividing, use the LEAST number of sig figs from your calculation numbers.");
                 this.volumeInput.showWarning("Calculate Volume of Water to " + this.sigFig + " Sig Figs");
             } else if (approxInputVol == this.toDecimalPlace(this.fWeightScale / this.density, 1)) {
@@ -262,6 +261,7 @@ export default class WeighScene extends BaseScene {
 
     onWake(sys, data){
         this.input.disable(this.glassware);
+        this.glassware.setTintFill(0xCCC);
 
         this.waterAmountStart = data.waterAmount;
         this.glassware.setWater(this.waterAmountStart);
@@ -298,8 +298,15 @@ export default class WeighScene extends BaseScene {
         return (Math.round(num * Math.pow(10,place)) / Math.pow(10,place) );
     }
 
+    //rounds to sig fig
     toSigFig(num: number, sigfig: number):number{
         return Number(new Number(num).toPrecision(sigfig)).valueOf();
+    }
+
+    countDecimals (value:number) : number {
+        if ((value % 1) != 0) 
+            return value.toString().split(".")[1].length;  
+        return 0;
     }
 
 

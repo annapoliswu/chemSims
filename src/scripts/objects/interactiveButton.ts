@@ -3,7 +3,7 @@ export default class InteractiveButton extends Phaser.GameObjects.Text {
     bgColor:string;
 
     constructor(scene: Phaser.Scene, x: number, y: number, name: string, bgColor: string) {
-        super(scene, x, y, name, { backgroundColor: bgColor, padding:{left:20,top:20}});
+        super(scene, x, y, name, {fontSize: '16px', backgroundColor: bgColor, align: 'center', padding:{left:20,top:20}});
         this.bgColor = bgColor;
 
         scene.add.existing(this);

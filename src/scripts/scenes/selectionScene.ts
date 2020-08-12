@@ -12,8 +12,8 @@ export default class SelectionScene extends BaseScene{
 
     create() {
         super.create();
-
-        this.add.rectangle(this.WIDTH / 2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99);
+        this.add.rectangle(this.WIDTH/2, this.HEIGHT - 100, this.WIDTH, 200, 0x999999).setDepth(-99);
+        this.add.text(this.WIDTH/2, 80, "GLASSWARE SIMULATION",  { color: '#000',  fontSize: 36, fontStyle: 'bold', align: 'center'}).setOrigin(.5,.5);
 
         new ImageButton(this, this.WIDTH/4, 290,'beaker', 'beaker').onClick( () =>{
             this.scene.start('WeighScene', { glasstype: 'beaker' , waterAmount: 0});
