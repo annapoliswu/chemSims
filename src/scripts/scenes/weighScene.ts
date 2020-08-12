@@ -91,7 +91,7 @@ export default class WeighScene extends BaseScene {
             this.glassware.setTintFill(0xCCC);
         }).on('pointerup', () => {
             this.glassware.alpha = 1;
-            this.glassware.setTintFill(0x2badf1);
+            this.glassware.setTintFill(0x0091de);
             this.scene.sleep();
             this.scene.run('WaterScene', { glasstype: this.glasstype, waterTarget: this.glassware.target });
         });
@@ -101,6 +101,9 @@ export default class WeighScene extends BaseScene {
 
 
         //---------------------------------EXTRA SCENE TEXT-----------------------------------
+
+        let inputX = x - 40;
+        let inputY = 100;
 
         this.scaleText = this.add.text(160, 605, this.iWeightScale.toFixed(2) + " g", {
             fontSize: '48px',
@@ -112,7 +115,7 @@ export default class WeighScene extends BaseScene {
         this.clickText = this.add.text(this.glassware.x - this.glassware.width/2, 160, "", {
             fontFamily: 'Arial',
             fontSize: '36px',
-            color: '#2badf1',
+            color: '#0091de',
             align: 'right',
             fontStyle: 'bold',
             wordWrap: {
@@ -120,10 +123,11 @@ export default class WeighScene extends BaseScene {
             }
         }).setOrigin(1,0);
 
-        this.calcText = this.add.text(830, 380, "", {
+        
+        this.calcText = this.add.text(inputX-175, 380, "", {
             fontFamily: 'Arial',
             fontSize: '22px',
-            color: '#FFAAFF',
+            color: '#9ED3FF',
             lineSpacing: 14,
             wordWrap: {
                 width: 400
@@ -133,8 +137,6 @@ export default class WeighScene extends BaseScene {
 
 
         //-------------------------------INPUTS and BUTTONS-----------------------------------
-        let inputX = x - 40;
-        let inputY = 100;
 
         this.iWeightInput = new InputLine(this, inputX, inputY, "Initial Weight", "Enter initial weight");
         this.iWeightInput.setLabel("Initial Weight: ?");
@@ -146,7 +148,7 @@ export default class WeighScene extends BaseScene {
                 this.iWeightInput.hideInput();
 
                 this.clickText.setText("CLICK GLASS TO MOVE ON ");
-                this.glassware.setTintFill(0x2badf1);
+                this.glassware.setTintFill(0x0091de);
                 this.glassware.setInteractive();
             } else if (this.toSigFig(this.iWeightInput.value,this.sigFig-1) == this.toSigFig(this.iWeightScale,this.sigFig-1)) {
                 this.iWeightInput.showWarning(this.sigFigsWarning);
