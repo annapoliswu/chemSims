@@ -220,10 +220,10 @@ export default class WeighScene extends BaseScene {
                 this.calcText.setText("Your calculated volume doesn't match the correct number of significant figures. Since we are multiplying and dividing, use the LEAST number of sig figs from your calculation numbers.");
                 this.volumeInput.showWarning("Calculate Volume of Water to " + this.sigFig + " Sig Figs");
             } else if (approxInputVol == this.toDecimalPlace(this.fWeightScale / this.density, 1)) {
-                this.calcText.setText("You may have used your final scale weight for mass. Remember that MASS is your FINAL WEIGHT - INITIAL WEIGHT.");
+                this.calcText.setText("You may have used your final scale weight for mass.\nRemember that MASS is your FINAL WEIGHT - INITIAL WEIGHT.");
                 this.volumeInput.showWarning("Calculate Volume of Water");
             } else if (approxInputVol == this.toDecimalPlace(this.iWeightScale / this.density, 1)) {
-                this.calcText.setText("You may have used your initial scale weight for mass. Remember that MASS is your FINAL WEIGHT - INITIAL WEIGHT.");
+                this.calcText.setText("You may have used your initial scale weight for mass.\nRemember that MASS is your FINAL WEIGHT - INITIAL WEIGHT.");
                 this.volumeInput.showWarning("Calculate Volume of Water");
             } else if (approxInputVol == this.toDecimalPlace(this.density / this.mass, 1)) {
                 this.calcText.setText("You may have gotten the formula backwards. Consider:\nDENSITY = MASS/VOLUME\nVOLUME = MASS/DENSITY");

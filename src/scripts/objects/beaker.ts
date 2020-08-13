@@ -6,7 +6,7 @@ export default class Beaker extends Glassware{
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'beaker');
         this.glasstype = 'beaker';
-        this.description = 'BEAKER\nA cylinder with a lip and a spout. A beaker is usually about the same width as its height. Usually used for containing liquids instead of measuring to very exact amounts.';
+        this.description = 'BEAKER\nA cylinder with a lip and a spout. A beaker is usually about as tall as it is wide. Mostly used for containing liquids instead of measuring to very exact amounts.';
         
         this.max = 50;
         this.target = Math.floor(Math.random() * 4) * 10 + 10;

@@ -6,7 +6,7 @@ export default class GraduatedCylinder extends Glassware{
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'graduatedCylinder');
         this.glasstype = 'graduatedCylinder';
-        this.description = 'GRADUATED CYLINDER\nA graduated cylinder is a tall cylindrical vessel. Commonly used to measure out specific amounts of liquid, but is not the most accurate glassware out there.';
+        this.description = "GRADUATED CYLINDER\nA graduated cylinder is a tall cylindrical vessel. It is commonly used for measuring out specific amounts of liquid, but it's not the most accurate glassware type out there.";
         
         this.max = 10;
         this.target = Math.floor(Math.random() * 9)+ 1;

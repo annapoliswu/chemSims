@@ -77,7 +77,7 @@ export default class WaterScene extends BaseScene {
 
 
     //text
-    this.add.text(buttonX+100, 150, 'TARGET: Fill to ' + this.glassware.target + 'ml',
+    this.add.text(buttonX+85, 150, 'TARGET: Fill to ' + this.glassware.target + 'ml',
       {
         fontSize: '20px',
         backgroundColor: '#3330AA',
