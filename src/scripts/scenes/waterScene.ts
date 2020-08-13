@@ -49,25 +49,25 @@ export default class WaterScene extends BaseScene {
 
     //buttons
     let buttonX = glassX + 150 + this.glassware.width/2;
-    this.addButton = new InteractiveButton(this, buttonX+200, 275, '+ SMALL\nAMOUNT WATER', '#666').on('pointerup', () => {
+    this.addButton = new InteractiveButton(this, buttonX+175, 275, '+ SMALL\nAMOUNT WATER', '#666',14).on('pointerup', () => {
       this.addButton.buttonHover();
-      this.glassware.addWater();
-    }).setOrigin(.5,0);
+      this.glassware.addSmallWater();
+    }).setOrigin(.5,.5);
 
     this.addButton2 = new InteractiveButton(this, buttonX, 275, '+ LARGE\nAMOUNT WATER', '#444').on('pointerup', () => {
       this.addButton2.buttonHover();
-      this.glassware.addWater();
-    }).setOrigin(.5,0);
+      this.glassware.addLargeWater();
+    }).setOrigin(.5,.5);
 
-    this.subtractButton = new InteractiveButton(this, buttonX+200, 350, '- SMALL\nAMOUNT WATER', '#666').on('pointerup', () => {
+    this.subtractButton = new InteractiveButton(this, buttonX+175, 350, '- SMALL\nAMOUNT WATER', '#666',14).on('pointerup', () => {
       this.subtractButton.buttonHover();
-      this.glassware.subtractWater();
-    }).setOrigin(.5,0);
+      this.glassware.subtractSmallWater();
+    }).setOrigin(.5,.5);
 
     this.subtractButton2 = new InteractiveButton(this, buttonX, 350, '- LARGE\nAMOUNT WATER', '#444').on('pointerup', () => {
       this.subtractButton2.buttonHover();
-      this.glassware.subtractWater();
-    }).setOrigin(.5,0);
+      this.glassware.subtractLargeWater();
+    }).setOrigin(.5,.5);
 
     this.nextSceneButton = new InteractiveButton(this, 1110, 675, 'MOVE TO NEXT STEP', '#000').on('pointerup', () => {
       this.nextSceneButton.buttonHover();

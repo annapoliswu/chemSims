@@ -26,13 +26,36 @@ export default abstract class Glassware extends Phaser.GameObjects.Sprite {
 
     }
 
-    abstract addWater();
-    abstract subtractWater();
+    addWater(amount: number){
+        if(this.waterAmount + amount <= this.max){
+            this.waterAmount += amount;
+        }else{
+            this.waterAmount = this.max;
+        }
+        Math.round(this.waterAmount * Math.pow(10,2)) / Math.pow(10,2);
+        this.updateMask();
+    }
+
+    subtractWater(amount: number){
+        if(this.waterAmount - amount >= 0){
+            this.waterAmount -=  amount;
+        }else{
+            this.waterAmount = 0;
+        }
+        this.waterAmount = Math.round(this.waterAmount * Math.pow(10,2)) / Math.pow(10,2);
+        this.updateMask();
+    }
+
+    abstract addSmallWater();
+    abstract subtractSmallWater();
+
+    abstract addLargeWater();
+    abstract subtractLargeWater();
+
     abstract updateMask();    //updates height of mask according to starting height and waterAmount
     abstract setWater(amountOfWater: number);
     
-    addMask(scene: Phaser.Scene, x, y, w, h){
-
+    addMask(scene: Phaser.Scene, x:number, y:number, w:number, h:number){
         this.maskShape = this.graphics.fillRoundedRect(x-w/2, y-h/2, w , h, { tl: 0, tr: 0, bl: w/2, br: w/2 });
         this.maskShape.alpha = 0;
 

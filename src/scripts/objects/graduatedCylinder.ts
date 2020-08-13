@@ -6,7 +6,7 @@ export default class GraduatedCylinder extends Glassware{
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'graduatedCylinder');
         this.glasstype = 'graduatedCylinder';
-        this.description = 'GRADUATED CYLINDER\nA graduated cylinder ...';
+        this.description = 'GRADUATED CYLINDER\nA graduated cylinder is a tall cylindrical vessel. Commonly used to measure out specific amounts of liquid, but is not the most accurate glassware out there.';
         
         this.max = 10;
         this.target = Math.floor(Math.random() * 9)+ 1;
@@ -18,18 +18,20 @@ export default class GraduatedCylinder extends Glassware{
         this.addMask(scene, x, y-40, w, h);
     }
     
-    addWater(){
-        if(this.waterAmount < this.max){
-            this.waterAmount += this.max/20;
-            this.updateMask();
-        }
+    addSmallWater(){
+        this.addWater(.25);
+    } 
+
+    subtractSmallWater(){
+        this.subtractWater(.25);
     }
 
-    subtractWater(){
-        if(this.waterAmount > 0){
-            this.waterAmount -= this.max/20;
-            this.updateMask();
-        }
+    addLargeWater(){
+        this.addWater(3);
+    }
+    
+    subtractLargeWater(){
+        this.subtractWater(3);
     }
 
     updateMask(){
