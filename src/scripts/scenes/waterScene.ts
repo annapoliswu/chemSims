@@ -1,14 +1,9 @@
-import ExampleObject from '../objects/exampleObject';
 import BaseScene from "./baseScene";
-import Glassware from "../objects/glassware";
 import InteractiveButton from "../objects/interactiveButton";
-import Beaker from '../objects/Beaker';
 
 
 
 export default class WaterScene extends BaseScene {
-
-  private exampleObject: ExampleObject;
 
   addButton: InteractiveButton;
   subtractButton: InteractiveButton;
@@ -16,12 +11,8 @@ export default class WaterScene extends BaseScene {
   subtractButton2: InteractiveButton;
   nextSceneButton: InteractiveButton;
 
-  testtext;
-
-  graphics;
-  waterImage;
-  mask;
-  waterTarget;
+  waterTarget: number;
+  testtext: Phaser.GameObjects.Text;
   
 
 
@@ -77,7 +68,7 @@ export default class WaterScene extends BaseScene {
 
 
     //text
-    this.add.text(buttonX+85, 150, 'TARGET: Fill to ' + this.glassware.target + 'ml',
+    this.add.text(buttonX+85, 150, 'TARGET: Fill to ' + this.glassware.target + ' ml',
       {
         fontSize: '20px',
         backgroundColor: '#3330AA',

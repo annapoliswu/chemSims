@@ -3,7 +3,7 @@ export default class ImageButton{
     glass: Phaser.GameObjects.Image;
     text: Phaser.GameObjects.Text;
     rect: Phaser.GameObjects.Rectangle;
-    bgColor:number = 0x2badf1;
+    bgColor: number = 0x2badf1;
 
     constructor(scene: Phaser.Scene, x: number, y: number, imageName: string, text: string) {
         this.glass = scene.add.image(x, y, imageName).setTintFill(0x000).setDepth(99).setOrigin(.5,0);

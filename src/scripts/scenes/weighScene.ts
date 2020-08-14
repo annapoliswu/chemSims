@@ -1,14 +1,12 @@
-import Glassware from "../objects/glassware";
 import InputLine from "./../objects/inputLine";
 import BaseScene from "./baseScene";
 import InteractiveButton from "../objects/interactiveButton";
-import Beaker from '../objects/Beaker';
-import { Tilemaps } from "phaser";
+
+
 
 export default class WeighScene extends BaseScene {
 
     waterAmountStart: number;
-
     iWeight: number;
 
     temp: number;       //temp of water
@@ -193,6 +191,8 @@ export default class WeighScene extends BaseScene {
             }
         });
 
+
+        
          //------------------------------------VOLUME CHECKS-----------------------------------
         this.volumeInput = new InputLine(this, inputX, inputY + 225, "Calculate Volume of Water", "Enter water volume");
         this.volumeInput.addOnClick(() => {
@@ -272,13 +272,12 @@ export default class WeighScene extends BaseScene {
         this.scaleText.setText(this.fWeightScale.toFixed(2) + " g");
 
         this.mass = this.fWeightScale - this.iWeightScale;
-        this.volume = this.toSigFig(this.mass/this.density, this.sigFig) //this.toDecimalPlace((this.mass/this.density), 2);
+        this.volume = this.toSigFig(this.mass/this.density, this.sigFig);
 
         this.fWeightInput.show();
         this.densityInput.show();
         this.waterTableButton.alpha = 1;
         this.clickText.alpha = 0;
-        //this.volumeInput.show();
     }
 
     

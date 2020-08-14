@@ -1,10 +1,10 @@
 import ImageButton from "./../objects/imageButton";
 import BaseScene from "./baseScene";
-import InteractiveButton from "../objects/interactiveButton";
+
+
 
 export default class SelectionScene extends BaseScene{
 
-    beakerButton;
 
     constructor() {
         super('SelectionScene');
