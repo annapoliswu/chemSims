@@ -253,11 +253,12 @@ export default class WeighScene extends BaseScene {
 
         this.events.on('wake', this.onWake, this);
 
-       
+/*
         //---------------------------------------------- DEBUG ----------------------------------------------
         setInterval( ()=>{
             console.log({iWeight: this.iWeight, density: this.density, volume: this.volume, percent: this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 2)});
         }, 4000 );
+*/
     }
 
 
