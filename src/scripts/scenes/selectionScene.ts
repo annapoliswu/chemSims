@@ -26,6 +26,8 @@ export default class SelectionScene extends BaseScene{
         new ImageButton(this, 3*this.WIDTH/4, 230,'volumetricFlask', 'volumetric flask').onClick( () =>{
             this.scene.start('WeighScene', { glasstype: 'volumetricFlask' , waterAmount: 0});
         });
+
+        this.add.text(this.WIDTH/2, 720, "(CHOOSE A GLASSWARE TYPE TO GET STARTED)",  { color: '#000',  fontSize: 18, fontStyle: 'bold', align: 'center'}).setOrigin(.5,.5);
     }
 
     update() {

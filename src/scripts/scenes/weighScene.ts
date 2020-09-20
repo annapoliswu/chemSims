@@ -217,7 +217,9 @@ export default class WeighScene extends BaseScene {
                 this.volumeInput.hideInput();
                 this.tryAgainButton.changeColor('#3330AA');
             } else if ((this.toDecimalPlace(inputVol,0) == this.toDecimalPlace(this.volume, 0)) && (this.countDecimals(inputVol) != this.countDecimals(this.volume))) {
-                this.calcText.setText("Your calculated volume doesn't match the correct number of significant figures. Since we are multiplying and dividing, use the LEAST number of sig figs from your calculation numbers.");
+                let example:number = 3.0123;
+                this.calcText.setText("Your calculated volume doesn't match the correct number of significant figures. Since we are multiplying and dividing, use the LEAST number of sig figs from your calculation numbers."+
+                "\n(Ex: " + example + " to " + this.sigFig + " sig figs is " + this.toSigFig(example, this.sigFig) + ")");
                 this.volumeInput.showWarning("Calculate Volume of Water to " + this.sigFig + " Sig Figs");
             } else if (approxInputVol == this.toDecimalPlace(this.fWeightScale / this.density, 1)) {
                 this.calcText.setText("You may have used your final scale weight for mass.\nRemember that MASS is your FINAL WEIGHT - INITIAL WEIGHT.");
@@ -251,12 +253,11 @@ export default class WeighScene extends BaseScene {
 
         this.events.on('wake', this.onWake, this);
 
-        /*
+       
         //---------------------------------------------- DEBUG ----------------------------------------------
         setInterval( ()=>{
             console.log({iWeight: this.iWeight, density: this.density, volume: this.volume, percent: this.toDecimalPlace(( Math.abs(this.glassware.target - this.volume) / this.glassware.target)*100, 2)});
         }, 4000 );
-        */
     }
 
 
