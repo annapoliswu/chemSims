@@ -35,5 +35,5 @@ Burets (and graduated pipets) need to have a starting point and an ending point 
 - Prompts to retry the "taking up water" section if user sets pipettes wrong.
 - At end, tells user how close to expected amount.
 
-# Story and Gameplay
+## Initial Storyboard
 ![Storyboard](glassware_storyboard.jpg) 
